@@ -54,14 +54,12 @@ void do_nothing(benchmark::State& state) {
 
 }  // namespace
 
-using double_size_int = padded_int<std::int32_t, sizeof(std::int64_t)>;
-
 BENCHMARK_TEMPLATE(lower_bound_bench, std::int32_t);
-BENCHMARK_TEMPLATE(lower_bound_bench, double_size_int);
+BENCHMARK_TEMPLATE(lower_bound_bench, padded_int<std::int32_t>);
 BENCHMARK_TEMPLATE(copy_bench, std::int32_t);
-BENCHMARK_TEMPLATE(copy_bench, double_size_int);
+BENCHMARK_TEMPLATE(copy_bench, padded_int<std::int32_t>);
 BENCHMARK_TEMPLATE(erase_if_bench, std::int32_t);
-BENCHMARK_TEMPLATE(erase_if_bench, double_size_int);
+BENCHMARK_TEMPLATE(erase_if_bench, padded_int<std::int32_t>);
 BENCHMARK(do_nothing);
 
 BENCHMARK_MAIN();
