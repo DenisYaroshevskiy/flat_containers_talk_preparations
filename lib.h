@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <initializer_list>
+#include <iterator>
 #include <tuple>
 #include <type_traits>
 #include <vector>
@@ -20,11 +21,6 @@ template <typename T>
 struct has_is_transparent_member<T, void_t<typename T::is_transparent>>
     : std::true_type {};
 
-template <typename T>
-constexpr bool TransparentComparator() {
-  return has_is_transparent_member<T>::value;
-}
-
 template <typename F>
 // requires Predicate<F>
 struct not_fn_impl {
@@ -36,13 +32,33 @@ struct not_fn_impl {
   }
 };
 
+template <typename F, typename T>
+// requires Ordering<F(T)>
+struct less_than_impl : F {
+  const T* x;
+
+  less_than_impl(F f, const T& x) noexcept : F{f}, x(&x) {}
+
+  template <typename U>
+  bool operator()(const U& y) noexcept {
+    return F::operator()(y, *x);
+  }
+};
+
 }  // namespace detail
+
+// concepts -------------------------------------------------------------------
+
+template <typename T>
+constexpr bool TransparentComparator() {
+  return detail::has_is_transparent_member<T>::value;
+}
 
 // functors -------------------------------------------------------------------
 
 struct less {
   template <typename X, typename Y>
-  bool operator()(const X& x, const Y& y) {
+  bool operator()(const X& x, const Y& y) noexcept(noexcept(x < y)) {
     return x < y;
   }
 
@@ -51,8 +67,20 @@ struct less {
 
 template <typename F>
 // requires Predicate<F>
-detail::not_fn_impl<F> not_fn(F f) {
+detail::not_fn_impl<F> not_fn(F f) noexcept {
   return {f};
+}
+
+template <typename F, typename T>
+// requires Ordering<F(T)>
+detail::less_than_impl<F, T> less_than(const T& x, F f) noexcept {
+  return {f, x};
+}
+
+template <typename T>
+// requires Ordered<T>
+auto less_than(const T& x) noexcept -> decltype(less_than(x, less{})) {
+  return less_than(x, less{});
 }
 
 // algorithms -----------------------------------------------------------------
@@ -74,6 +102,39 @@ I sort_and_unique(I f, I l, Comparator comp) {
 template <typename I>
 I sort_and_unique(I f, I l) {
   return sort_and_unique(f, l, less{});
+}
+
+template <typename I, typename P>
+// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_biased(I f, I l, P p) {
+  if (f == l || !p(*f))
+    return f;
+  ++f;
+  auto len = std::distance(f, l);
+  auto step = 1;
+  while (len > step) {
+    I m = std::next(f, step);
+    if (!p(*m)) {
+      l = m;
+      break;
+    }
+    f = ++m;
+    len -= step + 1;
+    step <<= 1;
+  }
+  return std::partition_point(f, l, p);
+}
+
+template <typename I, typename V, typename P>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_biased(I f, I l, const V& v, P p) {
+  return partition_point_biased(f, l, less_than(v, p));
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_biased(I f, I l, const V& v) {
+  return lower_bound_biased(f, l, v, less{});
 }
 
 template <typename Key,
