@@ -1,3 +1,8 @@
+
+#define LIB_TEST_ON
+#define CATCH_CONFIG_MAIN
+#include "third_party/catch.h"
+
 #include "lib.h"
 
 #include <algorithm>
@@ -7,8 +12,6 @@
 
 #include <iostream>
 
-#define CATCH_CONFIG_MAIN
-#include "third_party/catch.h"
 
 namespace {
 
@@ -22,12 +25,13 @@ using strange_cmp_set = lib::flat_set<int, strange_cmp>;
 
 template <typename F>
 void lower_bound_test(F f) {
-  for (size_t size = 0; size < 1000; ++size) {
+  for (size_t size = 6; size < 1000; ++size) {
+    std::cout << size << std::endl;
     std::vector<int> v(size);
     std::iota(v.begin(), v.end(), 0);
     for (int looking_for : v) {
-      auto expected =
-          std::lower_bound(v.begin(), v.end(), looking_for);
+      // std::cout << "  " << looking_for << std::endl;
+      auto expected = std::lower_bound(v.begin(), v.end(), looking_for);
       auto actual = f(v, looking_for);
       REQUIRE(expected == actual);
     }
@@ -36,9 +40,15 @@ void lower_bound_test(F f) {
 
 }  // namespace
 
-TEST_CASE("lower_bound_full", "[partition_point_biased]") {
+TEST_CASE("lower_bound_biased_old", "[partition_point_biased]") {
   lower_bound_test([](const std::vector<int>& v, int looking_for) {
     return lib::lower_bound_biased(v.begin(), v.end(), looking_for);
+  });
+}
+
+TEST_CASE("lower_bound_biased_sentinal", "[partition_point_biased]") {
+  lower_bound_test([](const std::vector<int>& v, int looking_for) {
+    return lib::lower_bound_biased_sentinal(v.begin(), v.end(), looking_for);
   });
 }
 

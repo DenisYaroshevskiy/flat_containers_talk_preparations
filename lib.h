@@ -1,11 +1,18 @@
 #pragma once
 
 #include <algorithm>
+#include <cassert>
 #include <initializer_list>
 #include <iterator>
 #include <tuple>
 #include <type_traits>
 #include <vector>
+
+#ifdef LIB_TEST_ON
+#define LIB_ASSERT(X) REQUIRE(X)
+#else
+#define LIB_ASSERT(X)
+#endif  // LIB_TEST_ON
 
 namespace lib {
 
@@ -125,6 +132,37 @@ I partition_point_biased(I f, I l, P p) {
   return std::partition_point(f, l, p);
 }
 
+
+template <typename I, typename P>
+// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_biased_sentinal(I f, I l, P p) {
+#ifdef LIB_TEST_ON
+  I original_f = f;
+#endif  // LIB_TEST_ON
+
+  if (f == l || !p(*f))
+    return f;
+  ++f;
+
+  I middle = std::next(f, std::distance(f, l) / 2);
+  if (p(*middle))
+    return std::partition_point(++middle, l, p);
+
+  int step = 1;
+  while(true) {
+    LIB_ASSERT(f + step < l);
+
+    I test = std::next(f, step);
+    if (!p(*test)) {
+      l = test;
+      break;
+    }
+    f = ++test;
+    step <<= 1;
+  }
+  return std::partition_point(f, std::min(l, middle), p);
+}
+
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_biased(I f, I l, const V& v, P p) {
@@ -136,6 +174,19 @@ template <typename I, typename V>
 I lower_bound_biased(I f, I l, const V& v) {
   return lower_bound_biased(f, l, v, less{});
 }
+
+template <typename I, typename V, typename P>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_biased_sentinal(I f, I l, const V& v, P p) {
+  return partition_point_biased_sentinal(f, l, less_than(v, p));
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_biased_sentinal(I f, I l, const V& v) {
+  return lower_bound_biased_sentinal(f, l, v, less{});
+}
+
 
 template <typename Key,
           typename Comparator = less,
