@@ -34,7 +34,10 @@ struct not_fn_impl {
   F f;
 
   template <typename... Args>
-  bool operator()(Args&&... args) {
+  bool operator()(Args&&... args)
+    noexcept(
+      noexcept(f(std::forward<Args>(args)...))
+    ) {
     return !f(std::forward<Args>(args)...);
   }
 };
@@ -112,6 +115,12 @@ I sort_and_unique(I f, I l) {
 }
 
 template <typename I, typename P>
+// requires Input<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_linear(I f, I l, P p) {
+  return std::find_if_not(f, l, p);
+}
+
+template <typename I, typename P>
 // requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
 I partition_point_biased(I f, I l, P p) {
   if (f == l || !p(*f))
@@ -136,15 +145,16 @@ I partition_point_biased(I f, I l, P p) {
 template <typename I, typename P>
 // requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
 I partition_point_biased_sentinal(I f, I l, P p) {
-#ifdef LIB_TEST_ON
-  I original_f = f;
-#endif  // LIB_TEST_ON
+  auto n = std::distance(f, l);
+  if (n <= 5)
+    return partition_point_linear(f, l, p);
 
-  if (f == l || !p(*f))
+  if (!p(*f))
     return f;
   ++f;
+  --n;
 
-  I middle = std::next(f, std::distance(f, l) / 2);
+  I middle = std::next(f, n / 2);
   if (p(*middle))
     return std::partition_point(++middle, l, p);
 
