@@ -175,6 +175,18 @@ I partition_point_biased_sentinal(I f, I l, P p) {
 
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_linear(I f, I l, const V& v, P p) {
+  return partition_point_linear(f, l, less_than(v, p));
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_linear(I f, I l, const V& v) {
+  return lower_bound_linear(f, l, v, less{});
+}
+
+template <typename I, typename V, typename P>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_biased(I f, I l, const V& v, P p) {
   return partition_point_biased(f, l, less_than(v, p));
 }

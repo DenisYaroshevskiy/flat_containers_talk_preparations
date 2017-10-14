@@ -25,12 +25,10 @@ using strange_cmp_set = lib::flat_set<int, strange_cmp>;
 
 template <typename F>
 void lower_bound_test(F f) {
-  for (size_t size = 6; size < 1000; ++size) {
-    std::cout << size << std::endl;
+  for (size_t size = 0; size < 1000; ++size) {
     std::vector<int> v(size);
     std::iota(v.begin(), v.end(), 0);
     for (int looking_for : v) {
-      // std::cout << "  " << looking_for << std::endl;
       auto expected = std::lower_bound(v.begin(), v.end(), looking_for);
       auto actual = f(v, looking_for);
       REQUIRE(expected == actual);
