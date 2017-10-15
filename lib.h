@@ -8,12 +8,6 @@
 #include <type_traits>
 #include <vector>
 
-#ifdef LIB_TEST_ON
-#define LIB_ASSERT(X) REQUIRE(X)
-#else
-#define LIB_ASSERT(X)
-#endif  // LIB_TEST_ON
-
 namespace lib {
 
 namespace detail {
@@ -33,26 +27,50 @@ template <typename F>
 struct not_fn_impl {
   F f;
 
+  // clang-format off
   template <typename... Args>
   bool operator()(Args&&... args)
-    noexcept(
-      noexcept(f(std::forward<Args>(args)...))
-    ) {
+  noexcept(
+    noexcept(f(std::forward<Args>(args)...))
+  ) {
     return !f(std::forward<Args>(args)...);
   }
+  // clang-format on
 };
 
 template <typename F, typename T>
 // requires Ordering<F(T)>
-struct less_than_impl : F {
+struct less_than_t : F {
   const T* x;
 
-  less_than_impl(F f, const T& x) noexcept : F{f}, x(&x) {}
+  less_than_t(F f, const T& x) noexcept : F{f}, x(&x) {}
 
+  // clang-format off
   template <typename U>
-  bool operator()(const U& y) noexcept {
+  bool operator()(const U& y)
+  noexcept (
+    noexcept(f(std::forward<U>(y)))
+  ) {
     return F::operator()(y, *x);
   }
+  // clang-format on
+
+};
+
+template <typename F>
+// requires BinaryPredicate<F(T)>
+struct strict_opposite {
+  F f;
+
+  // clang-format off
+  template <typename T, typename U>
+  bool operator()(T&& x, U&& y)
+  noexcept(
+    noexcept(f(std::forward<U>(y), std::forward<T>(x)))
+  ) {
+    return f(std::forward<U>(y), std::forward<T>(x));
+  }
+  // clang-format on
 };
 
 }  // namespace detail
@@ -83,7 +101,7 @@ detail::not_fn_impl<F> not_fn(F f) noexcept {
 
 template <typename F, typename T>
 // requires Ordering<F(T)>
-detail::less_than_impl<F, T> less_than(const T& x, F f) noexcept {
+detail::less_than_t<F, T> less_than(const T& x, F f) noexcept {
   return {f, x};
 }
 
@@ -115,39 +133,11 @@ I sort_and_unique(I f, I l) {
 }
 
 template <typename I, typename P>
-// requires Input<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_linear(I f, I l, P p) {
-  return std::find_if_not(f, l, p);
-}
-
-template <typename I, typename P>
 // requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
 I partition_point_biased(I f, I l, P p) {
-  if (f == l || !p(*f))
-    return f;
-  ++f;
-  auto len = std::distance(f, l);
-  auto step = 1;
-  while (len > step) {
-    I m = std::next(f, step);
-    if (!p(*m)) {
-      l = m;
-      break;
-    }
-    f = ++m;
-    len -= step + 1;
-    step <<= 1;
-  }
-  return std::partition_point(f, l, p);
-}
-
-
-template <typename I, typename P>
-// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_biased_sentinal(I f, I l, P p) {
   auto n = std::distance(f, l);
   if (n <= 5)
-    return partition_point_linear(f, l, p);
+    return std::find_if_not(f, l, p);
 
   if (!p(*f))
     return f;
@@ -159,9 +149,8 @@ I partition_point_biased_sentinal(I f, I l, P p) {
     return std::partition_point(++middle, l, p);
 
   int step = 1;
-  while(true) {
-    LIB_ASSERT(f + step < l);
 
+  while (true) {
     I test = std::next(f, step);
     if (!p(*test)) {
       l = test;
@@ -170,19 +159,8 @@ I partition_point_biased_sentinal(I f, I l, P p) {
     f = ++test;
     step <<= 1;
   }
+
   return std::partition_point(f, std::min(l, middle), p);
-}
-
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_linear(I f, I l, const V& v, P p) {
-  return partition_point_linear(f, l, less_than(v, p));
-}
-
-template <typename I, typename V>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_linear(I f, I l, const V& v) {
-  return lower_bound_linear(f, l, v, less{});
 }
 
 template <typename I, typename V, typename P>
@@ -197,18 +175,11 @@ I lower_bound_biased(I f, I l, const V& v) {
   return lower_bound_biased(f, l, v, less{});
 }
 
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_biased_sentinal(I f, I l, const V& v, P p) {
-  return partition_point_biased_sentinal(f, l, less_than(v, p));
-}
-
 template <typename I, typename V>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_biased_sentinal(I f, I l, const V& v) {
-  return lower_bound_biased_sentinal(f, l, v, less{});
+I upper_bound_biased(I f, I l, const V& v, P p) {
+  return partition_point_biased(f, l, )
 }
-
 
 template <typename Key,
           typename Comparator = less,
@@ -314,9 +285,7 @@ class flat_set {
   underlying_type& body() noexcept { return std::get<0>(impl_); }
   const underlying_type& body() const noexcept { return std::get<0>(impl_); }
 
-  void erase(const_iterator f, const_iterator l) {
-    body().erase(f, l);
-  }
+  void erase(const_iterator f, const_iterator l) { body().erase(f, l); }
 
   friend bool operator==(const flat_set& x, const flat_set& y) {
     return x.body() == y.body();
@@ -330,9 +299,7 @@ class flat_set {
     return x.body() < y.body();
   }
 
-  friend bool operator>(const flat_set& x, const flat_set& y) {
-    return y < x;
-  }
+  friend bool operator>(const flat_set& x, const flat_set& y) { return y < x; }
 
   friend bool operator<=(const flat_set& x, const flat_set& y) {
     return !(y < x);

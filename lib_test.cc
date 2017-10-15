@@ -38,15 +38,9 @@ void lower_bound_test(F f) {
 
 }  // namespace
 
-TEST_CASE("lower_bound_biased_old", "[partition_point_biased]") {
+TEST_CASE("lower_bound_biased", "[partition_point_biased]") {
   lower_bound_test([](const std::vector<int>& v, int looking_for) {
     return lib::lower_bound_biased(v.begin(), v.end(), looking_for);
-  });
-}
-
-TEST_CASE("lower_bound_biased_sentinal", "[partition_point_biased]") {
-  lower_bound_test([](const std::vector<int>& v, int looking_for) {
-    return lib::lower_bound_biased_sentinal(v.begin(), v.end(), looking_for);
   });
 }
 
