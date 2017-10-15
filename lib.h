@@ -27,16 +27,24 @@ template <typename F>
 struct not_fn_impl {
   F f;
 
-  // clang-format off
   template <typename... Args>
-  bool operator()(Args&&... args)
-  noexcept(
-    noexcept(f(std::forward<Args>(args)...))
-  ) {
+  bool operator()(Args&&... args) {
     return !f(std::forward<Args>(args)...);
   }
-  // clang-format on
 };
+
+// clang-format off
+template <typename ContainerValueType, typename InsertedType>
+using insert_should_be_enabled =
+typename std::enable_if<
+  std::is_same<
+    ContainerValueType,
+    typename std::remove_cv<
+      typename std::remove_reference<InsertedType>::type
+    >::type
+  >::value
+>::type;
+// clang-format on
 
 }  // namespace detail
 
@@ -167,7 +175,7 @@ I lower_bound_hinted(I f, I hint, I l, const V& v, P p) {
 
 template <typename I, typename V>
 // requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
-I lower_bound_hinted(I f, I hint,  I l, const V& v) {
+I lower_bound_hinted(I f, I hint, I l, const V& v) {
   return lower_bound_hinted(f, hint, l, v, less{});
 }
 
@@ -180,7 +188,7 @@ I upper_bound_hinted(I f, I hint, I l, const V& v, P p) {
 
 template <typename I, typename V>
 // requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
-I upper_bound_hinted(I f, I hint,  I l, const V& v) {
+I upper_bound_hinted(I f, I hint, I l, const V& v) {
   return upper_bound_hinted(f, hint, l, v, less{});
 }
 
@@ -211,84 +219,215 @@ class flat_set {
   // tuple compresses one empty argument
   std::tuple<underlying_type, value_compare> impl_;
 
- public:
-  flat_set() = default;
-  flat_set(const flat_set&) = default;
-  flat_set(flat_set&&) = default;
-  flat_set& operator=(const flat_set&) = default;
-  flat_set& operator=(flat_set&&) = default;
-  ~flat_set() = default;
+  template <typename V>
+  using type_for_value_compare =
+      typename std::conditional<TransparentComparator<value_compare>(),
+                                V,
+                                value_type>::type;
 
-  // clang-format off
-  explicit flat_set(const key_compare& comp)
-    noexcept(
-      std::is_nothrow_default_constructible<underlying_type>::value &&
-      std::is_nothrow_copy_constructible<key_compare>::value
-    )
-    : impl_{{}, comp} {}
-  // clang-format on
-
-  // clang-format off
-  flat_set(underlying_type buf, const key_compare& comp = key_compare())
-    noexcept(
-      std::is_nothrow_move_constructible<underlying_type>::value &&
-      std::is_nothrow_move_constructible<key_compare>::value &&
-      std::is_nothrow_move_assignable<value_type>::value
-    )
-  : impl_{std::move(buf), comp} {
-    erase(sort_and_unique(begin(), end(), key_compare()), end());
+  iterator const_cast_iterator(const_iterator c_it) {
+    return begin() + std::distance(cbegin(), c_it);
   }
-  // clang-format on
 
-  // clang-format off
-  flat_set(std::initializer_list<value_type> il,
-           const key_compare& comp = key_compare())
-    noexcept(
-      noexcept(flat_set(underlying_type{il}, comp))
-    )
-  : flat_set(underlying_type{il}, comp) {}
-  // clang-format on
+ public:
+  // --------------------------------------------------------------------------
+  // Lifetime -----------------------------------------------------------------
 
-  // clang-format off
+  flat_set() = default;
+  explicit flat_set(const key_compare& comp) : impl_{{}, comp} {}
+
   template <typename I>
   // requires InputIterator<I>
   flat_set(I f, I l, const key_compare& comp = key_compare())
-    noexcept(
-      noexcept(flat_set(underlying_type(f, l), comp))
-    )
-  : flat_set(underlying_type(f, l), comp) {}
-  // clang-format on
+      : flat_set(underlying_type(f, l), comp) {}
 
-  void clear() noexcept { body().clear(); }
+  flat_set(const flat_set&) = default;
+  flat_set(flat_set&&) = default;
 
-  size_type size() const noexcept { return body().size(); }
-  size_type max_size() const noexcept { return body().max_size(); }
+  flat_set(underlying_type buf, const key_compare& comp = key_compare())
+      : impl_{std::move(buf), comp} {
+    erase(sort_and_unique(begin(), end(), key_compare()), end());
+  }
 
-  bool empty() const noexcept { return body().empty(); }
+  flat_set(std::initializer_list<value_type> il,
+           const key_compare& comp = key_compare())
+      : flat_set(underlying_type{il}, comp) {}
 
-  iterator begin() noexcept { return body().begin(); }
-  const_iterator begin() const noexcept { return body().begin(); }
-  const_iterator cbegin() const noexcept { return body().cbegin(); }
+  ~flat_set() = default;
 
-  iterator end() noexcept { return body().end(); }
-  const_iterator end() const noexcept { return body().end(); }
-  const_iterator cend() const noexcept { return body().cend(); }
+  // --------------------------------------------------------------------------
+  // Assignments --------------------------------------------------------------
 
-  reverse_iterator rbegin() noexcept { return body().rbegin(); }
-  const_reverse_iterator rbegin() const noexcept { return body().rbegin(); }
-  const_reverse_iterator crbegin() const noexcept { return body().crbegin(); }
+  flat_set& operator=(const flat_set&) = default;
+  flat_set& operator=(flat_set&&) = default;
+  flat_set& operator=(std::initializer_list<value_type> il) {
+    *this = flat_set{il};
+    return *this;
+  }
 
-  reverse_iterator rend() noexcept { return body().rend(); }
-  const_reverse_iterator rend() const noexcept { return body().rend(); }
-  const_reverse_iterator crend() const noexcept { return body().crend(); }
+  //---------------------------------------------------------------------------
+  // Memory management.
 
-  key_compare key_comp() const noexcept { return std::get<1>(impl_); }
-  value_compare value_comp() const noexcept { return key_comp(); }
+  void reserve(size_type new_capacity) { body().reserve(new_capacity); }
+  size_type capacity() const { return body().capacity(); }
+  void shrink_to_fit() { body().shrink_to_fit(); }
 
-  underlying_type& body() noexcept { return std::get<0>(impl_); }
-  const underlying_type& body() const noexcept { return std::get<0>(impl_); }
+  //---------------------------------------------------------------------------
+  // Size management.
 
-  void erase(const_iterator f, const_iterator l) { body().erase(f, l); }
+  void clear() { body().clear(); }
+
+  size_type size() const { return body().size(); }
+  size_type max_size() const { return body().max_size(); }
+
+  bool empty() const { return body().empty(); }
+
+  //---------------------------------------------------------------------------
+  // Iterators.
+
+  iterator begin() { return body().begin(); }
+  const_iterator begin() const { return body().begin(); }
+  const_iterator cbegin() const { return body().cbegin(); }
+
+  iterator end() { return body().end(); }
+  const_iterator end() const { return body().end(); }
+  const_iterator cend() const { return body().cend(); }
+
+  reverse_iterator rbegin() { return body().rbegin(); }
+  const_reverse_iterator rbegin() const { return body().rbegin(); }
+  const_reverse_iterator crbegin() const { return body().crbegin(); }
+
+  reverse_iterator rend() { return body().rend(); }
+  const_reverse_iterator rend() const { return body().rend(); }
+  const_reverse_iterator crend() const { return body().crend(); }
+
+  //---------------------------------------------------------------------------
+  // Insert operations.
+
+  template <typename V,
+            typename = detail::insert_should_be_enabled<value_type, V>>
+  std::pair<iterator, bool> insert(V&& v) {
+    iterator pos = lower_bound(v);
+    if (pos == end() || value_comp()(v, *pos))
+      return {body().insert(pos, std::forward<V>(v)), true};
+    return {pos, false};
+  }
+
+  template <typename V,
+            typename = detail::insert_should_be_enabled<value_type, V>>
+  iterator insert(const_iterator hint, V&& v) {
+    auto pos = lower_bound_hinted(cbegin(), hint, cend(), v, value_comp());
+    if (pos == end() || value_comp()(v, *pos))
+      return body().insert(pos, std::forward<V>(v));
+    return const_cast_iterator(pos);
+  }
+
+  template <typename... Args>
+  std::pair<iterator, bool> emplace(Args&&... args) {
+    return insert(value_type{std::forward<Args>(args)...});
+  }
+
+  template <typename... Args>
+  iterator emplace_hint(const_iterator hint, Args&&... args) {
+    return insert(hint, value_type{std::forward<Args>(args)...});
+  }
+
+  // --------------------------------------------------------------------------
+  // Erase operations.
+
+  iterator erase(iterator pos) { return body().erase(pos); }
+  iterator erase(const_iterator pos) { return body().erase(pos); }
+
+  iterator erase(const_iterator f, const_iterator l) {
+    return body().erase(f, l);
+  }
+
+  template <typename V>
+  size_type erase(const V& v) {
+    auto eq_range = equal_range(v);
+    size_type res = std::distance(eq_range.first, eq_range.second);
+    erase(eq_range.first, eq_range.second);
+    return res;
+  }
+
+  // --------------------------------------------------------------------------
+  // Search operations.
+
+  template <typename V>
+  size_type count(const V& v) const {
+    auto eq_range = equal_range(v);
+    return std::distance(eq_range.first, eq_range.second);
+  }
+
+  template <typename V>
+  iterator find(const V& v) {
+    auto eq_range = equal_range(v);
+    return (eq_range.first == eq_range.second) ? end() : eq_range.first;
+  }
+
+  template <typename V>
+  const_iterator find(const V& v) const {
+    auto eq_range = equal_range(v);
+    return (eq_range.first == eq_range.second) ? end() : eq_range.first;
+  }
+
+  template <typename V>
+  std::pair<iterator, iterator> equal_range(const V& v) {
+    auto pos = lower_bound(v);
+    if (pos == end() || value_comp()(v, *pos))
+      return {pos, pos};
+
+    return {pos, std::next(pos)};
+  }
+
+  template <typename V>
+  std::pair<const_iterator, const_iterator> equal_range(const V& v) const {
+    auto pos = lower_bound(v);
+    if (pos == end() || value_comp()(v, *pos))
+      return {pos, pos};
+
+    return {pos, std::next(pos)};
+  }
+
+  template <typename V>
+  iterator lower_bound(const V& v) {
+    const type_for_value_compare<V>& v_ref = v;
+    return std::lower_bound(begin(), end(), v_ref, value_comp());
+  }
+
+  template <typename V>
+  const_iterator lower_bound(const V& v) const {
+    const type_for_value_compare<V>& v_ref = v;
+    return std::lower_bound(begin(), end(), v_ref, value_comp());
+  }
+
+  template <typename V>
+  iterator upper_bound(const V& v) {
+    const type_for_value_compare<V>& v_ref = v;
+    return std::upper_bound(begin(), end(), v_ref, value_comp());
+  }
+
+  template <typename V>
+  const_iterator upper_bound(const V& v) const {
+    const type_for_value_compare<V>& v_ref = v;
+    return std::upper_bound(begin(), end(), v_ref, value_comp());
+  }
+
+  //---------------------------------------------------------------------------
+  // Getters.
+
+  key_compare key_comp() const { return std::get<1>(impl_); }
+  value_compare value_comp() const { return key_comp(); }
+
+  underlying_type& body() { return std::get<0>(impl_); }
+  const underlying_type& body() const { return std::get<0>(impl_); }
+
+  //---------------------------------------------------------------------------
+  // General operations.
+
+  void swap(flat_set& x) { body().swap(x.body()); }
+
+  friend void swap(flat_set& x, flat_set& y) { x.swap(y); }
 
   friend bool operator==(const flat_set& x, const flat_set& y) {
     return x.body() == y.body();
@@ -312,5 +451,14 @@ class flat_set {
     return !(x < y);
   }
 };
+
+template <typename Key,
+          typename Comparator,
+          typename UnderlyingType,
+          typename P>
+// requires UnaryPredicate<P(reference)>
+void erase_if(flat_set<Key, Comparator, UnderlyingType>& x, P p) {
+  x.erase(std::remove_if(x.begin(), x.end(), p), x.end());
+}
 
 }  // namespace lib
