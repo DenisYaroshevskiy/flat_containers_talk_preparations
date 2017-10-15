@@ -38,42 +38,12 @@ struct not_fn_impl {
   // clang-format on
 };
 
-template <typename F, typename T>
-// requires Ordering<F(T)>
-struct less_than_t : F {
-  const T* x;
-
-  less_than_t(F f, const T& x) noexcept : F{f}, x(&x) {}
-
-  // clang-format off
-  template <typename U>
-  bool operator()(const U& y)
-  noexcept (
-    noexcept(f(std::forward<U>(y)))
-  ) {
-    return F::operator()(y, *x);
-  }
-  // clang-format on
-
-};
-
-template <typename F>
-// requires BinaryPredicate<F(T)>
-struct strict_opposite {
-  F f;
-
-  // clang-format off
-  template <typename T, typename U>
-  bool operator()(T&& x, U&& y)
-  noexcept(
-    noexcept(f(std::forward<U>(y), std::forward<T>(x)))
-  ) {
-    return f(std::forward<U>(y), std::forward<T>(x));
-  }
-  // clang-format on
-};
-
 }  // namespace detail
+
+// type functions ------------------------------------------------------------
+
+template <typename I>
+using Reference = typename std::iterator_traits<I>::reference;
 
 // concepts -------------------------------------------------------------------
 
@@ -97,18 +67,6 @@ template <typename F>
 // requires Predicate<F>
 detail::not_fn_impl<F> not_fn(F f) noexcept {
   return {f};
-}
-
-template <typename F, typename T>
-// requires Ordering<F(T)>
-detail::less_than_t<F, T> less_than(const T& x, F f) noexcept {
-  return {f, x};
-}
-
-template <typename T>
-// requires Ordered<T>
-auto less_than(const T& x) noexcept -> decltype(less_than(x, less{})) {
-  return less_than(x, less{});
 }
 
 // algorithms -----------------------------------------------------------------
@@ -166,7 +124,8 @@ I partition_point_biased(I f, I l, P p) {
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_biased(I f, I l, const V& v, P p) {
-  return partition_point_biased(f, l, less_than(v, p));
+  auto less_than_v = [&](Reference<I> x) { return p(x, v); };
+  return partition_point_biased(f, l, less_than_v);
 }
 
 template <typename I, typename V>
@@ -175,10 +134,54 @@ I lower_bound_biased(I f, I l, const V& v) {
   return lower_bound_biased(f, l, v, less{});
 }
 
-template <typename I, typename V>
+template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I upper_bound_biased(I f, I l, const V& v, P p) {
-  return partition_point_biased(f, l, )
+  auto greater_than_v = [&](Reference<I> x) { return !p(v, x); };
+  return partition_point_biased(f, l, greater_than_v);
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
+I upper_bound_biased(I f, I l, const V& v) {
+  return upper_bound_biased(f, l, v, less{});
+}
+
+template <typename I, typename P>
+// requires BidirectionalIterator<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_hinted(I f, I hint, I l, P p) {
+  I rhs = partition_point_biased(hint, l, p);
+  if (rhs != hint)
+    return rhs;
+
+  return partition_point_biased(std::reverse_iterator<I>(hint),
+                                std::reverse_iterator<I>(f), not_fn(p)).base();
+}
+
+template <typename I, typename V, typename P>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_hinted(I f, I hint, I l, const V& v, P p) {
+  auto less_than_v = [&](Reference<I> x) { return p(x, v); };
+  return partition_point_hinted(f, hint, l, less_than_v);
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
+I lower_bound_hinted(I f, I hint,  I l, const V& v) {
+  return lower_bound_hinted(f, hint, l, v, less{});
+}
+
+template <typename I, typename V, typename P>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I upper_bound_hinted(I f, I hint, I l, const V& v, P p) {
+  auto greater_than_v = [&](Reference<I> x) { return !p(v, x); };
+  return partition_point_hinted(f, hint, l, greater_than_v);
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
+I upper_bound_hinted(I f, I hint,  I l, const V& v) {
+  return upper_bound_hinted(f, hint, l, v, less{});
 }
 
 template <typename Key,

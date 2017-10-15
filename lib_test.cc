@@ -23,24 +23,58 @@ using int_set = lib::flat_set<int>;
 using int_vec = int_set::underlying_type;
 using strange_cmp_set = lib::flat_set<int, strange_cmp>;
 
-template <typename F>
-void lower_bound_test(F f) {
+template <bool is_lower_bound, typename F>
+void binary_search_test(F f) {
+  std::vector<int> v(1000u);
+
+  for (int i = 0; i < static_cast<int>(v.size()); i += 2) {
+    v[i] = i;
+    v[i + 1] = i;
+  }
+
+  for (int looking_for = -1; looking_for < 0; ++looking_for) {
+    auto expected = is_lower_bound
+                        ? std::lower_bound(v.begin(), v.end(), looking_for)
+                        : std::upper_bound(v.begin(), v.end(), looking_for);
+    for (size_t hint = 0; hint <= v.size(); ++hint) {
+      auto actual = f(v.begin(), v.begin() + hint, v.end(), looking_for);
+      REQUIRE(expected - actual == 0);
+    }
+  }
+}
+
+
+}  // namespace
+
+TEST_CASE("sentinal_test", "[partition_point_biased]") {
   for (size_t size = 0; size < 1000; ++size) {
     std::vector<int> v(size);
     std::iota(v.begin(), v.end(), 0);
     for (int looking_for : v) {
       auto expected = std::lower_bound(v.begin(), v.end(), looking_for);
-      auto actual = f(v, looking_for);
+      auto actual = lib::lower_bound_biased(v.begin(), v.end(), looking_for);
       REQUIRE(expected == actual);
     }
   }
 }
 
-}  // namespace
+TEST_CASE("lower_bounds", "[partition_point_biased]") {
+  using it = std::vector<int>::iterator;
+  binary_search_test<true>([](it f, it hint, it l, int looking_for) {
+    return lib::lower_bound_biased(f, l, looking_for);
+  });
+  binary_search_test<true>([](it f, it hint, it l, int looking_for) {
+    return lib::lower_bound_hinted(f, hint, l, looking_for);
+  });
+}
 
-TEST_CASE("lower_bound_biased", "[partition_point_biased]") {
-  lower_bound_test([](const std::vector<int>& v, int looking_for) {
-    return lib::lower_bound_biased(v.begin(), v.end(), looking_for);
+TEST_CASE("upper_bounds", "[partition_point_biased]") {
+  using it = std::vector<int>::iterator;
+  binary_search_test<false>([](it f, it hint, it l, int looking_for) {
+    return lib::upper_bound_biased(f, l, looking_for);
+  });
+  binary_search_test<false>([](it f, it hint, it l, int looking_for) {
+    return lib::upper_bound_hinted(f, hint, l, looking_for);
   });
 }
 
