@@ -226,7 +226,7 @@ TEST_CASE("initializer_list_assignment", "[flat_cainers, flat_set") {
   int_set c = {0};
   c = {1, 2, 3, 4};
 
-  int_set expected = {1, 2, 3, 4};
+  int_vec expected = {1, 2, 3, 4};
 
   REQUIRE(expected == c.body());
 }

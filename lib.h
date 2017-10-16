@@ -216,8 +216,18 @@ class flat_set {
       typename underlying_type::const_reverse_iterator;
 
  private:
-  // tuple compresses one empty argument
-  std::tuple<underlying_type, value_compare> impl_;
+  // We cannot use std::tuple for compressed pair, because there is no way to
+  // forward many arguments to one of the members.
+  struct impl_t : value_compare {
+    impl_t() = default;
+
+    template <typename... Args>
+    impl_t(value_compare comp, Args... args)
+        : value_compare(comp), body_{std::forward<Args>(args)...} {};
+
+    underlying_type body_;
+  }
+  impl_;
 
   template <typename V>
   using type_for_value_compare =
@@ -234,24 +244,27 @@ class flat_set {
   // Lifetime -----------------------------------------------------------------
 
   flat_set() = default;
-  explicit flat_set(const key_compare& comp) : impl_{{}, comp} {}
+  explicit flat_set(const key_compare& comp) : impl_{comp} {}
 
   template <typename I>
   // requires InputIterator<I>
   flat_set(I f, I l, const key_compare& comp = key_compare())
-      : flat_set(underlying_type(f, l), comp) {}
+      : impl_(comp, f, l) {
+    erase(sort_and_unique(begin(), end(), key_compare()), end());
+  }
 
   flat_set(const flat_set&) = default;
   flat_set(flat_set&&) = default;
 
-  flat_set(underlying_type buf, const key_compare& comp = key_compare())
-      : impl_{std::move(buf), comp} {
+  explicit flat_set(underlying_type buf,
+                    const key_compare& comp = key_compare())
+      : impl_{comp, std::move(buf)} {
     erase(sort_and_unique(begin(), end(), key_compare()), end());
   }
 
   flat_set(std::initializer_list<value_type> il,
            const key_compare& comp = key_compare())
-      : flat_set(underlying_type{il}, comp) {}
+      : flat_set(il.begin(), il.end(), comp) {}
 
   ~flat_set() = default;
 
@@ -261,7 +274,8 @@ class flat_set {
   flat_set& operator=(const flat_set&) = default;
   flat_set& operator=(flat_set&&) = default;
   flat_set& operator=(std::initializer_list<value_type> il) {
-    *this = flat_set{il};
+    body() = il;
+    erase(sort_and_unique(begin(), end(), key_compare()), end());
     return *this;
   }
 
@@ -416,11 +430,11 @@ class flat_set {
   //---------------------------------------------------------------------------
   // Getters.
 
-  key_compare key_comp() const { return std::get<1>(impl_); }
-  value_compare value_comp() const { return key_comp(); }
+  key_compare key_comp() const { return impl_; }
+  value_compare value_comp() const { return impl_; }
 
-  underlying_type& body() { return std::get<0>(impl_); }
-  const underlying_type& body() const { return std::get<0>(impl_); }
+  underlying_type& body() { return impl_.body_; }
+  const underlying_type& body() const { return impl_.body_; }
 
   //---------------------------------------------------------------------------
   // General operations.
