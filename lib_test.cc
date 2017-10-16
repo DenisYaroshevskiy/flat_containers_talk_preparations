@@ -94,6 +94,9 @@ TEST_CASE("sentinal_test", "[partition_point_biased]") {
 TEST_CASE("lower_bounds", "[partition_point_biased]") {
   using it = std::vector<int>::iterator;
   binary_search_test<true>([](it f, it hint, it l, int looking_for) {
+    return lib::lower_bound_linear(f, l, looking_for);
+  });
+  binary_search_test<true>([](it f, it hint, it l, int looking_for) {
     return lib::lower_bound_biased(f, l, looking_for);
   });
   binary_search_test<true>([](it f, it hint, it l, int looking_for) {

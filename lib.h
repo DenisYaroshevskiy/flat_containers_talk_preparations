@@ -147,6 +147,31 @@ I sort_and_unique(I f, I l) {
 }
 
 template <typename I, typename P>
+// requires BidirectionalIterator<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_linear(I f, I l, P p) {
+  if (f == l || p(*std::prev(l)))
+    return l;
+
+  while (p(*f))
+    ++f;
+
+  return f;
+}
+
+template <typename I, typename V, typename P>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_linear(I f, I l, const V& v, P p) {
+  auto less_than_v = [&](Reference<I> x) { return p(x, v); };
+  return partition_point_linear(f, l, less_than_v);
+}
+
+template <typename I, typename V>
+// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
+I lower_bound_linear(I f, I l, const V& v) {
+  return lower_bound_linear(f, l, v, lib::less{});
+}
+
+template <typename I, typename P>
 // requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
 I partition_point_biased(I f, I l, P p) {
   auto n = std::distance(f, l);

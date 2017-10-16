@@ -11,24 +11,6 @@ constexpr size_t kSetSize = 1000;
 constexpr int kLookingFor = 400;
 
 template <typename I, typename P>
-// requires Input<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_linear(I f, I l, P p) {
-  return std::find_if_not(f, l, p);
-}
-
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_linear(I f, I l, const V& v, P p) {
-  return partition_point_linear(f, l, lib::less_than(v, p));
-}
-
-template <typename I, typename V>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_linear(I f, I l, const V& v) {
-  return lower_bound_linear(f, l, v, lib::less{});
-}
-
-template <typename I, typename P>
 // requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
 I partition_point_biased_simple(I f, I l, P p) {
   if (f == l || !p(*f))
@@ -52,7 +34,8 @@ I partition_point_biased_simple(I f, I l, P p) {
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_biased_simple(I f, I l, const V& v, P p) {
-  return partition_point_biased_simple(f, l, lib::less_than(v, p));
+  auto less_than_v = [&](lib::Reference<I> x) { return p(x, v); };
+  return partition_point_biased_simple(f, l, less_than_v);
 }
 
 template <typename I, typename V>
@@ -74,7 +57,7 @@ void lower_bound_alg(benchmark::State& state) {
 struct linear_search {
   template <typename I, typename T>
   I operator()(I f, I l, const T& v) {
-    return lower_bound_linear(f, l, v);
+    return lib::lower_bound_linear(f, l, v);
   }
 };
 
@@ -88,7 +71,7 @@ struct simple_biased {
 struct sentinal_biased {
   template <typename I, typename T>
   I operator()(I f, I l, const T& v) {
-    return lib::lower_bound_biased_sentinal(f, l, v);
+    return lib::lower_bound_biased(f, l, v);
   }
 };
 
