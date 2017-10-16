@@ -7,7 +7,7 @@
 
 namespace {
 
-constexpr size_t kSetSize = 10000;
+constexpr size_t kSetSize = 1000;
 constexpr int kLookingFor = 400;
 
 template <typename I, typename P>

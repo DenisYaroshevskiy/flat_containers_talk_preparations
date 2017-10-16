@@ -33,10 +33,58 @@ struct not_fn_impl {
   }
 };
 
+// libc++ currently does not optimize to memmove for reverse iterators.
+// This is a small hack to fix this.
+// A proper patch has been submitted: https://reviews.llvm.org/D38653
+
+template <typename I>
+struct is_reverse_iterator : std::false_type {};
+
+template <typename I>
+struct is_reverse_iterator<std::reverse_iterator<I>> : std::true_type {};
+
+template <typename I>
+struct is_move_reverse_iterator : std::false_type {};
+
+template <typename I>
+struct is_move_reverse_iterator<std::move_iterator<std::reverse_iterator<I>>>
+    : std::true_type {};
+
+// clang-format off
+template <typename I, typename O>
+typename std::enable_if
+<
+  !is_move_reverse_iterator<I>::value || !is_reverse_iterator<O>::value,
+  O
+>::type
+copy(I f, I l, O o) {
+  return std::copy(f, l, o);
+}
+// clang-format on
+
+// clang-format off
+template <typename I, typename O>
+typename std::enable_if
+<
+  is_move_reverse_iterator<I>::value && is_reverse_iterator<O>::value,
+  O
+>::type
+copy(I f, I l, O o) {
+  auto just_revese_f = f.base();
+  auto just_reverse_l = l.base();
+
+  auto new_plain_o =
+      std::copy_backward(std::make_move_iterator(l.base()),
+                         std::make_move_iterator(f.base()), o.base());
+  return O(new_plain_o);
+}
+// clang-format on
+
 // clang-format off
 template <typename ContainerValueType, typename InsertedType>
 using insert_should_be_enabled =
-typename std::enable_if<
+typename std::enable_if
+<
   std::is_same<
     ContainerValueType,
     typename std::remove_cv<
@@ -48,7 +96,7 @@ typename std::enable_if<
 
 }  // namespace detail
 
-// type functions ------------------------------------------------------------
+// meta functions -------------------------------------------------------------
 
 template <typename I>
 using Reference = typename std::iterator_traits<I>::reference;
@@ -191,6 +239,80 @@ template <typename I, typename V>
 I upper_bound_hinted(I f, I hint, I l, const V& v) {
   return upper_bound_hinted(f, hint, l, v, less{});
 }
+
+namespace detail {
+
+template <typename I, typename V, typename O, typename P>
+std::pair<I, O> copy_unitl_lower_bound(I f, I l, const V& v, O o, P p) {
+  I m = lower_bound_biased(f, l, v, p);
+  return {m, detail::copy(f, m, o)};
+}
+
+template <typename I1, typename I2, typename O, typename P>
+// requires ForwardIterator<I1> && ForwardIterator<I2> && OutputIterator<O> &&
+//          StrictWeakOrdering<P(ValueType<I>)>
+std::tuple<I1, I2, O> set_union_intersecting_parts(I1 f1,
+                                                   I1 l1,
+                                                   I2 f2,
+                                                   I2 l2,
+                                                   O o,
+                                                   P p) {
+  while (true) {
+    if (f2 == l2)
+      break;
+
+    std::tie(f1, o) = copy_unitl_lower_bound(f1, l1, *f2, o, p);
+
+    if (f1 == l1)
+      break;
+
+    std::tie(f2, o) = copy_unitl_lower_bound(f2, l2, *f1, o, p);
+
+    if (f2 == l2)
+      break;
+
+    if (!p(*f1, *f2))
+      ++f2;
+  }
+
+  return {f1, f2, o};
+}
+
+template <typename Traits, typename I1, typename I2, typename P>
+// requires ForwardIterator<I1> && ForwardIterator<I2> &&
+//          StrictWeakOrdering<P, ValueType<I>>
+std::pair<I1, I1> set_union_into_tail(I1 buf, I1 f1, I1 l1, I2 f2, I2 l2, P p) {
+  std::move_iterator<I1> move_f1;
+  std::tie(move_f1, f2, buf) =
+      set_union_intersecting_parts(std::make_move_iterator(f1),  //
+                                   std::make_move_iterator(l1),  //
+                                   f2, l2,                       //
+                                   buf, p);                      //
+
+  return {detail::copy(f2, l2, buf), move_f1.base()};
+}
+
+}  // detail
+
+template <typename I1, typename I2, typename O, typename P>
+// requires ForwardIterator<I1> && ForwardIterator<I2> && OutputIterator<O> &&
+//          StrictWeakOrdering<P, ValueType<I>>
+O set_union_unbalanced(I1 f1, I1 l1, I2 f2, I2 l2, O o, P p) {
+  std::tie(f1, f2, o) =
+      detail::set_union_intersecting_parts(f1, l1, f2, l2, o, p);
+
+  assert(f1 == l1 || f2 == l2);
+  o = detail::copy(f1, l1, o);
+  return detail::copy(f2, l2, o);
+}
+
+template <typename I1, typename I2, typename O>
+// requires ForwardIterator<I1> && ForwardIterator<I2> && OutputIterator<O> &&
+//          TotallyOrdered<ValueType<I>>
+O set_union_unbalanced(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
+  return set_union_unbalanced(f1, l1, f2, l2, o, less{});
+}
+
 
 template <typename Key,
           typename Comparator = less,

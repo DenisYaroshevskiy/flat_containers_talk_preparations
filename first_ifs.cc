@@ -12,12 +12,14 @@ constexpr size_t kArraySize = 1000;
 constexpr size_t kLookingFor = 200;
 
 std::vector<value_type> generate_input() {
+  std::mt19937 g;
+  std::uniform_int_distribution<> dis(1, 10000);
+
   std::vector<value_type> res(kArraySize);
+
 
   for (auto& x : res) {
     std::generate(x.begin(), x.end(), [] {
-      static std::mt19937 g;
-      static std::uniform_int_distribution<> dis(1, 10000);
       return dis(g);
     });
   }

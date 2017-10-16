@@ -111,6 +111,27 @@ TEST_CASE("upper_bounds", "[partition_point_biased]") {
   });
 }
 
+TEST_CASE("set_union_unbalanced", "[merge_algorithms]") {
+  auto test = [](const std::vector<int>& lhs, const std::vector<int>& rhs,
+                 const std::vector<int>& expected) {
+    std::vector<int> actual(lhs.size() + rhs.size());
+    auto l = lib::set_union_unbalanced(lhs.begin(), lhs.end(), rhs.begin(),
+                                       rhs.end(), actual.begin());
+    actual.erase(l, actual.end());
+    CHECK(expected == actual);
+  };
+
+  test({}, {}, {});
+  test({1}, {}, {1});
+  test({}, {1}, {1});
+  test({1}, {1}, {1});
+  test({1, 3}, {2}, {1, 2, 3});
+  test({1, 3, 4}, {2}, {1, 2, 3, 4});
+  test({1, 3}, {2, 4}, {1, 2, 3, 4});
+  test({1, 3, 4}, {2, 4}, {1, 2, 3, 4});
+  test({1, 2, 3, 6, 7}, {4, 6}, {1, 2, 3, 4, 6, 7});
+}
+
 TEST_CASE("set_types", "[flat_cainers, flat_set]") {
   // These are guaranteed to be portable.
   static_assert((std::is_same<int, int_set::key_type>::value), "");
