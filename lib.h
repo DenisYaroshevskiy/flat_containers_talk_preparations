@@ -101,6 +101,9 @@ typename std::enable_if
 template <typename I>
 using Reference = typename std::iterator_traits<I>::reference;
 
+template <typename I>
+using DifferenceType = typename std::iterator_traits<I>::difference_type;
+
 // concepts -------------------------------------------------------------------
 
 template <typename T>
@@ -171,18 +174,10 @@ I lower_bound_linear(I f, I l, const V& v) {
   return lower_bound_linear(f, l, v, lib::less{});
 }
 
-template <typename I, typename P>
-// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_biased(I f, I l, P p) {
-  auto n = std::distance(f, l);
-  if (n <= 5)
-    return std::find_if_not(f, l, p);
-
-  if (!p(*f))
-    return f;
-  ++f;
-  --n;
-
+__attribute__((noinline))
+I partition_point_binary_search_part(I f, I l,
+                                    DifferenceType<I> n,
+                                    P p) {
   I middle = std::next(f, n / 2);
   if (p(*middle))
     return std::partition_point(++middle, l, p);
@@ -200,6 +195,21 @@ I partition_point_biased(I f, I l, P p) {
   }
 
   return std::partition_point(f, std::min(l, middle), p);
+}
+
+template <typename I, typename P>
+// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_biased(I f, I l, P p) {
+  if (f == l || !p(*f)) return f; f++;
+  if (f == l || !p(*f)) return f; f++;
+  if (f == l || !p(*f)) return f; f++;
+  if (f == l || !p(*f)) return f; f++;
+  if (f == l || !p(*f)) return f; f++;
+
+  DifferenceType<I> n = std::distance(f, l);
+  if (n > 5)
+    return partition_point_binary_search_part(f, l, n, p);
+  return partition_point_biased(f, l, p);
 }
 
 template <typename I, typename V, typename P>

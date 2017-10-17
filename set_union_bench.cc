@@ -59,8 +59,16 @@ void set_union_benchmark(benchmark::State& state) {
   }
 }
 
-BENCHMARK_TEMPLATE(set_union_benchmark, std_set_union);
-BENCHMARK_TEMPLATE(set_union_benchmark, set_union_unbalanced);
+void std_set_union_bench(benchmark::State& state) {
+  set_union_benchmark<std_set_union>(state);
+}
+
+void lib_set_union_bench(benchmark::State& state) {
+  set_union_benchmark<set_union_unbalanced>(state);
+}
+
+BENCHMARK(std_set_union_bench);
+BENCHMARK(lib_set_union_bench);
 
 
 }  // namespace
