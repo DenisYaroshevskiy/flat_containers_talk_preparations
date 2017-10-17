@@ -3,6 +3,9 @@
 #define CATCH_CONFIG_MAIN
 #include "third_party/catch.h"
 
+#include <iostream>
+#include <string>
+
 #include "lib.h"
 
 #include <algorithm>
@@ -397,6 +400,29 @@ TEST_CASE("insert_emplace_hint_v", "[flat_cainers, flat_set]") {
 }
 
 TEST_CASE("insert_f_l", "[flat_cainers, flat_set]") {
+  std::mt19937 g;
+  std::uniform_int_distribution<> dis(1, 1000);
+  auto rand_int = [&] { return dis(g); };
+
+  for (size_t c_size = 0; c_size < 100; ++c_size) {
+    for (size_t range_size = 0; range_size < 100; ++range_size) {
+      int_vec already_in(c_size);
+      std::generate(already_in.begin(), already_in.end(), rand_int);
+
+      int_vec new_elements(range_size);
+      std::generate(new_elements.begin(), new_elements.end(), rand_int);
+
+      int_set actual(already_in);
+      actual.insert(new_elements.begin(), new_elements.end());
+
+      int_vec expected = already_in;
+      expected.insert(expected.end(), new_elements.begin(), new_elements.end());
+      expected.erase(lib::sort_and_unique(expected.begin(), expected.end()),
+                     expected.end());
+
+      REQUIRE(expected == actual.body());
+    }
+  }
 }
 
 TEST_CASE("erase_pos", "[flat_cainers, flat_set]") {

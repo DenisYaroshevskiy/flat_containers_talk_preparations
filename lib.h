@@ -24,12 +24,22 @@ struct has_is_transparent_member<T, void_t<typename T::is_transparent>>
 
 template <typename F>
 // requires Predicate<F>
-struct not_fn_impl {
+struct not_fn_t {
   F f;
 
   template <typename... Args>
   bool operator()(Args&&... args) {
     return !f(std::forward<Args>(args)...);
+  }
+};
+
+template <typename F>
+struct inverse_t {
+  F f;
+
+  template <typename X, typename Y>
+  bool operator()(const X& x, const Y& y) {
+    return f(y, x);
   }
 };
 
@@ -70,12 +80,13 @@ typename std::enable_if
   O
 >::type
 copy(I f, I l, O o) {
-  auto just_revese_f = f.base();
+  auto just_reverse_f = f.base();
   auto just_reverse_l = l.base();
 
   auto new_plain_o =
-      std::copy_backward(std::make_move_iterator(l.base()),
-                         std::make_move_iterator(f.base()), o.base());
+      std::copy_backward(std::make_move_iterator(just_reverse_l.base()),
+                         std::make_move_iterator(just_reverse_f.base()),
+                         o.base());
   return O(new_plain_o);
 }
 // clang-format on
@@ -97,6 +108,9 @@ typename std::enable_if
 }  // namespace detail
 
 // meta functions -------------------------------------------------------------
+
+template <typename C>
+using Iterator = typename C::iterator;
 
 template <typename I>
 using Reference = typename std::iterator_traits<I>::reference;
@@ -124,7 +138,12 @@ struct less {
 
 template <typename F>
 // requires Predicate<F>
-detail::not_fn_impl<F> not_fn(F f) noexcept {
+detail::not_fn_t<F> not_fn(F f) noexcept {
+  return {f};
+}
+
+template <typename F>
+detail::inverse_t<F> inverse_fn(F f) noexcept {
   return {f};
 }
 
@@ -174,6 +193,7 @@ I lower_bound_linear(I f, I l, const V& v) {
   return lower_bound_linear(f, l, v, lib::less{});
 }
 
+template <typename I, typename P>
 __attribute__((noinline))
 I partition_point_binary_search_part(I f, I l,
                                     DifferenceType<I> n,
@@ -215,7 +235,7 @@ I partition_point_biased(I f, I l, P p) {
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_biased(I f, I l, const V& v, P p) {
-  auto less_than_v = [&](Reference<I> x) { return p(x, v); };
+  auto less_than_v = [&](const Reference<I> x) { return p(x, v); };
   return partition_point_biased(f, l, less_than_v);
 }
 
@@ -228,7 +248,7 @@ I lower_bound_biased(I f, I l, const V& v) {
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I upper_bound_biased(I f, I l, const V& v, P p) {
-  auto greater_than_v = [&](Reference<I> x) { return !p(v, x); };
+  auto greater_than_v = [&](const Reference<I> x) { return !p(v, x); };
   return partition_point_biased(f, l, greater_than_v);
 }
 
@@ -252,7 +272,7 @@ I partition_point_hinted(I f, I hint, I l, P p) {
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_hinted(I f, I hint, I l, const V& v, P p) {
-  auto less_than_v = [&](Reference<I> x) { return p(x, v); };
+  auto less_than_v = [&](const Reference<I> x) { return p(x, v); };
   return partition_point_hinted(f, hint, l, less_than_v);
 }
 
@@ -265,7 +285,7 @@ I lower_bound_hinted(I f, I hint, I l, const V& v) {
 template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I upper_bound_hinted(I f, I hint, I l, const V& v, P p) {
-  auto greater_than_v = [&](Reference<I> x) { return !p(v, x); };
+  auto greater_than_v = [&](const Reference<I> x) { return !p(v, x); };
   return partition_point_hinted(f, hint, l, greater_than_v);
 }
 
@@ -313,7 +333,7 @@ std::tuple<I1, I2, O> set_union_intersecting_parts(I1 f1,
   return {f1, f2, o};
 }
 
-template <typename Traits, typename I1, typename I2, typename P>
+template <typename I1, typename I2, typename P>
 // requires ForwardIterator<I1> && ForwardIterator<I2> &&
 //          StrictWeakOrdering<P, ValueType<I>>
 std::pair<I1, I1> set_union_into_tail(I1 buf, I1 f1, I1 l1, I2 f2, I2 l2, P p) {
@@ -347,6 +367,43 @@ template <typename I1, typename I2, typename O>
 O set_union_unbalanced(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
   return set_union_unbalanced(f1, l1, f2, l2, o, less{});
 }
+
+namespace detail {
+
+template <typename C, typename I, typename P>
+// requires  Container<C> &&  ForwardIterator<I> &&
+//           StrictWeakOrdering<P(ValueType<C>)>
+void insert_first_last_impl(C& c, I f, I l, P p) {
+  auto new_len = std::distance(f, l);
+  auto orig_len = c.size();
+  c.resize(orig_len + 2 * new_len);
+
+  Iterator<C> orig_f = c.begin();
+  Iterator<C> orig_l = c.begin() + orig_len;
+  Iterator<C> f_in = c.end() - new_len;
+  Iterator<C> l_in = c.end();
+  Iterator<C> buf = f_in;
+
+  detail::copy(f, l, f_in);
+  l_in = sort_and_unique(f_in, l_in, p);
+
+  using reverse_it = typename C::reverse_iterator;
+  auto move_reverse_it =
+      [](Iterator<C> it) { return std::make_move_iterator(reverse_it(it)); };
+
+  auto reverse_remainig_buf_range = detail::set_union_into_tail(
+      reverse_it(buf), reverse_it(orig_l), reverse_it(orig_f),
+      move_reverse_it(l_in), move_reverse_it(f_in), inverse_fn(p));
+
+  auto remaining_buf =
+      std::make_pair(reverse_remainig_buf_range.second.base() - c.begin(),
+                     reverse_remainig_buf_range.first.base() - c.begin());
+
+  c.erase(c.end() - new_len, c.end());
+  c.erase(c.begin() + remaining_buf.first, c.begin() + remaining_buf.second);
+}
+
+}  // namespace detail
 
 
 template <typename Key,
@@ -491,6 +548,11 @@ class flat_set {
     if (pos == end() || value_comp()(v, *pos))
       return body().insert(pos, std::forward<V>(v));
     return const_cast_iterator(pos);
+  }
+
+  template <typename I>
+  void insert(I f, I l) {
+    detail::insert_first_last_impl(body(), f, l, value_comp());
   }
 
   template <typename... Args>
