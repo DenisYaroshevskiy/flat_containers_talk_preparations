@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <random>
+#include <map>
 
 #include "lib.h"
 #include "base/containers/flat_set.h"
@@ -10,55 +11,95 @@
 
 namespace {
 
+
 constexpr size_t kLhsSize = 1000;
-constexpr size_t kRhsSize = 25;
+
+constexpr size_t kStartRhs = 1;
+constexpr size_t kEndRhs = 31;
+constexpr size_t kRhsStep = 1;
 
 using int_vec = std::vector<int>;
 
-std::pair<int_vec, int_vec> generate_data() {
-  std::mt19937 g;
-  std::uniform_int_distribution<> dis(1, 10000);
+std::pair<int_vec*, int_vec*> test_input_data(int inserting_size) {
+  auto random_number = [] {
+    static std::mt19937 g;
+    static std::uniform_int_distribution<> dis(1, int(kLhsSize) * 100);
+    return dis(g);
+  };
 
-  auto rand_int = [&] { return dis(g); };
+  static int_vec already_in = [&] {
+    std::set<int> res;
+    while (res.size() < kLhsSize)
+      res.insert(random_number());
+    return int_vec(res.begin(), res.end());
+  }();
 
-  int_vec lhs(kLhsSize);
-  int_vec rhs(kRhsSize);
-  std::generate(lhs.begin(), lhs.end(), rand_int);
-  lhs.erase(lib::sort_and_unique(lhs.begin(), lhs.end()), lhs.end());
+  static std::map<int, std::vector<int>> inserting_cache;
 
-  std::generate(rhs.begin(), rhs.end(), rand_int);
-  rhs.erase(lib::sort_and_unique(rhs.begin(), rhs.end()), rhs.end());
+  auto found = inserting_cache.find(inserting_size);
+  if (found == inserting_cache.end()) {
+    found = inserting_cache.insert({inserting_size,
+                                    [&] {
+                                      int_vec res(
+                                          static_cast<size_t>(inserting_size));
+                                      std::generate(res.begin(), res.end(),
+                                                    random_number);
+                                      return res;
+                                    }()}).first;
+  }
 
-  return {std::move(lhs), std::move(rhs)};
+  return {&already_in, &found->second};
 }
+
 
 template <typename Container>
 void insert_first_last_bench(benchmark::State& state) {
-  auto input = generate_data();
-  Container c(input.first.begin(), input.first.end());
+  auto input = test_input_data(state.range(0));
+  Container c(input.first->begin(), input.first->end());
   while (state.KeepRunning()) {
     auto copy = c;
-    copy.insert(input.second.begin(), input.second.end());
+    copy.insert(input.second->begin(), input.second->end());
   }
 }
 
-void insert_first_last_bench_lib(benchmark::State& state) {
+struct baseline_set {
+  template <typename I>
+  baseline_set(I f, I l) : body(f, l) {};
+
+  template <typename I>
+  void insert(I f, I l){}
+
+  int_vec body;
+};
+
+void baseline(benchmark::State& state) {
+  insert_first_last_bench<baseline_set>(state);
+}
+
+void solution(benchmark::State& state) {
   insert_first_last_bench<lib::flat_set<int>>(state);
 }
 
-void insert_first_last_bench_boost(benchmark::State& state) {
+void Boost(benchmark::State& state) {
   insert_first_last_bench<boost::container::flat_set<int>>(state);
 }
 
-void insert_first_last_bench_folly(benchmark::State& state) {
+void Folly(benchmark::State& state) {
   insert_first_last_bench<folly::sorted_vector_set<int>>(state);
+}
+
+void set_input_sizes(benchmark::internal::Benchmark* bench) {
+  for (int i = static_cast<int>(kStartRhs); i < static_cast<int>(kEndRhs);
+       i += static_cast<int>(kRhsStep))
+    bench->Arg(i);
 }
 
 }  // namespace
 
-BENCHMARK(insert_first_last_bench_lib);
-BENCHMARK(insert_first_last_bench_boost);
-BENCHMARK(insert_first_last_bench_folly);
+BENCHMARK(baseline)->Apply(set_input_sizes);
+// BENCHMARK(solution)->Apply(set_input_sizes);
+BENCHMARK(Boost)->Apply(set_input_sizes);
+BENCHMARK(Folly)->Apply(set_input_sizes);
 
 BENCHMARK_MAIN();
 
