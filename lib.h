@@ -8,7 +8,23 @@
 #include <type_traits>
 #include <vector>
 
+#include "older_partition_points.h"
+
 namespace lib {
+
+// meta functions -------------------------------------------------------------
+
+template <typename C>
+using Iterator = typename C::iterator;
+
+template <typename I>
+using ValueType = typename std::iterator_traits<I>::value_type;
+
+template <typename I>
+using Reference = typename std::iterator_traits<I>::reference;
+
+template <typename I>
+using DifferenceType = typename std::iterator_traits<I>::difference_type;
 
 namespace detail {
 
@@ -54,42 +70,69 @@ template <typename I>
 struct is_reverse_iterator<std::reverse_iterator<I>> : std::true_type {};
 
 template <typename I>
-struct is_move_reverse_iterator : std::false_type {};
+struct is_move_iterator : std::false_type {};
 
 template <typename I>
-struct is_move_reverse_iterator<std::move_iterator<std::reverse_iterator<I>>>
-    : std::true_type {};
+struct is_move_iterator<std::move_iterator<I>> : std::true_type {};
 
 // clang-format off
-template <typename I, typename O>
-typename std::enable_if
-<
-  !is_move_reverse_iterator<I>::value || !is_reverse_iterator<O>::value,
-  O
->::type
-copy(I f, I l, O o) {
+template <bool condition, typename I>
+typename std::enable_if<!condition, I>::type
+unwrap(I it) {
+  assert(false);
+  return it;
+}
+// clang-format on
+
+// clang-format off
+template <bool condition, typename I>
+typename std::enable_if<condition, typename I::iterator_type>::type
+unwrap(I it) {
+  return it.base();
+}
+// clang-format on
+
+template <bool is_backward, typename I, typename O>
+typename std::enable_if<!is_backward, O>::type call_copy(I f, I l, O o) {
   return std::copy(f, l, o);
 }
-// clang-format on
 
-// clang-format off
-template <typename I, typename O>
-typename std::enable_if
-<
-  is_move_reverse_iterator<I>::value && is_reverse_iterator<O>::value,
-  O
->::type
-copy(I f, I l, O o) {
-  auto just_reverse_f = f.base();
-  auto just_reverse_l = l.base();
-
-  auto new_plain_o =
-      std::copy_backward(std::make_move_iterator(just_reverse_l.base()),
-                         std::make_move_iterator(just_reverse_f.base()),
-                         o.base());
-  return O(new_plain_o);
+template <bool is_backward, typename I, typename O>
+typename std::enable_if<is_backward, O>::type call_copy(I f, I l, O o) {
+  return std::copy_backward(f, l, o);
 }
-// clang-format on
+
+template <bool is_backward, typename I, typename O>
+O do_copy(I f, I l, O o) {
+  constexpr bool is_trivial_copy =
+      std::is_trivially_copy_assignable<ValueType<O>>::value &&
+      std::is_same<typename std::remove_const<ValueType<I>>::type,
+                   ValueType<O>>::value;
+
+  {
+    constexpr bool condition = is_move_iterator<I>::value && is_trivial_copy;
+    if (condition)
+      return O(do_copy<is_backward>(unwrap<condition>(f),
+                                    unwrap<condition>(l),
+                                    o));
+  }
+
+  {
+    constexpr bool condition =
+        is_reverse_iterator<I>::value && is_reverse_iterator<O>::value;
+    constexpr bool new_is_backward = condition ? !is_backward : is_backward;
+    if (condition)
+      return O(do_copy<new_is_backward>(unwrap<condition>(l),
+                                        unwrap<condition>(f),
+                                        unwrap<condition>(o)));
+  }
+  return O(call_copy<is_backward>(f, l, o));
+}
+
+template <typename I, typename O>
+O copy(I f, I l, O o) {
+  return do_copy<false>(f, l, o);
+}
 
 // clang-format off
 template <typename ContainerValueType, typename InsertedType>
@@ -107,16 +150,6 @@ typename std::enable_if
 
 }  // namespace detail
 
-// meta functions -------------------------------------------------------------
-
-template <typename C>
-using Iterator = typename C::iterator;
-
-template <typename I>
-using Reference = typename std::iterator_traits<I>::reference;
-
-template <typename I>
-using DifferenceType = typename std::iterator_traits<I>::difference_type;
 
 // concepts -------------------------------------------------------------------
 
@@ -236,7 +269,8 @@ template <typename I, typename V, typename P>
 // requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
 I lower_bound_biased(I f, I l, const V& v, P p) {
   auto less_than_v = [&](const Reference<I> x) { return p(x, v); };
-  return partition_point_biased(f, l, less_than_v);
+  return v1::partition_point_biased(f, l, less_than_v);
+  //return partition_point_biased(f, l, less_than_v);
 }
 
 template <typename I, typename V>

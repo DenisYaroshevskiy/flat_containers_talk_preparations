@@ -1,0 +1,1061 @@
+{
+  "context": {
+    "date": "2017-10-18 22:29:41",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2200,
+    "cpu_scaling_enabled": false,
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "baseline/1",
+      "iterations": 5849517,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/21",
+      "iterations": 5990740,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/41",
+      "iterations": 5975245,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/61",
+      "iterations": 5985515,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/81",
+      "iterations": 6032715,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/101",
+      "iterations": 6021816,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/121",
+      "iterations": 5787611,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/141",
+      "iterations": 5905578,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/161",
+      "iterations": 5969335,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/181",
+      "iterations": 5878352,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/201",
+      "iterations": 6071277,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/221",
+      "iterations": 5970251,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/241",
+      "iterations": 5906176,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/261",
+      "iterations": 5659127,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/281",
+      "iterations": 5990227,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/301",
+      "iterations": 5839026,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/321",
+      "iterations": 5948992,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/341",
+      "iterations": 6072435,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/361",
+      "iterations": 5923820,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/381",
+      "iterations": 5890669,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/401",
+      "iterations": 5656291,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/421",
+      "iterations": 5828331,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/441",
+      "iterations": 5884925,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/461",
+      "iterations": 5884430,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/481",
+      "iterations": 5885716,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/501",
+      "iterations": 6048927,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/521",
+      "iterations": 5879784,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/541",
+      "iterations": 6033391,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/561",
+      "iterations": 6062706,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/581",
+      "iterations": 5906475,
+      "real_time": 119,
+      "cpu_time": 119,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/601",
+      "iterations": 5798446,
+      "real_time": 116,
+      "cpu_time": 116,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/621",
+      "iterations": 6098092,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/641",
+      "iterations": 5902690,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/661",
+      "iterations": 5791154,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/681",
+      "iterations": 6014624,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/701",
+      "iterations": 6025341,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/721",
+      "iterations": 5970200,
+      "real_time": 117,
+      "cpu_time": 117,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/741",
+      "iterations": 5903437,
+      "real_time": 117,
+      "cpu_time": 117,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/761",
+      "iterations": 5945253,
+      "real_time": 117,
+      "cpu_time": 117,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/781",
+      "iterations": 6031831,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/801",
+      "iterations": 5723630,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/821",
+      "iterations": 5929992,
+      "real_time": 117,
+      "cpu_time": 117,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/841",
+      "iterations": 5708368,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/861",
+      "iterations": 6070750,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/881",
+      "iterations": 5988741,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/901",
+      "iterations": 5962572,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/921",
+      "iterations": 6050966,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/941",
+      "iterations": 6073647,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/961",
+      "iterations": 5964858,
+      "real_time": 114,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/981",
+      "iterations": 5834160,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/1",
+      "iterations": 1626092,
+      "real_time": 409,
+      "cpu_time": 409,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/21",
+      "iterations": 595390,
+      "real_time": 1097,
+      "cpu_time": 1097,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/41",
+      "iterations": 438830,
+      "real_time": 1539,
+      "cpu_time": 1539,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/61",
+      "iterations": 367572,
+      "real_time": 1901,
+      "cpu_time": 1901,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/81",
+      "iterations": 300224,
+      "real_time": 2271,
+      "cpu_time": 2271,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/101",
+      "iterations": 257999,
+      "real_time": 2697,
+      "cpu_time": 2697,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/121",
+      "iterations": 222888,
+      "real_time": 3128,
+      "cpu_time": 3128,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/141",
+      "iterations": 200672,
+      "real_time": 3507,
+      "cpu_time": 3507,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/161",
+      "iterations": 177352,
+      "real_time": 3940,
+      "cpu_time": 3940,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/181",
+      "iterations": 161612,
+      "real_time": 4312,
+      "cpu_time": 4312,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/201",
+      "iterations": 152300,
+      "real_time": 4558,
+      "cpu_time": 4555,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/221",
+      "iterations": 128412,
+      "real_time": 5118,
+      "cpu_time": 5118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/241",
+      "iterations": 119086,
+      "real_time": 5456,
+      "cpu_time": 5456,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/261",
+      "iterations": 114471,
+      "real_time": 5802,
+      "cpu_time": 5802,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/281",
+      "iterations": 104459,
+      "real_time": 7099,
+      "cpu_time": 6942,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/301",
+      "iterations": 101735,
+      "real_time": 6409,
+      "cpu_time": 6409,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/321",
+      "iterations": 98546,
+      "real_time": 6732,
+      "cpu_time": 6732,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/341",
+      "iterations": 88983,
+      "real_time": 7336,
+      "cpu_time": 7335,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/361",
+      "iterations": 88940,
+      "real_time": 7328,
+      "cpu_time": 7328,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/381",
+      "iterations": 84471,
+      "real_time": 7991,
+      "cpu_time": 7991,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/401",
+      "iterations": 75141,
+      "real_time": 9062,
+      "cpu_time": 9061,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/421",
+      "iterations": 71543,
+      "real_time": 9329,
+      "cpu_time": 9325,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/441",
+      "iterations": 72762,
+      "real_time": 9245,
+      "cpu_time": 9242,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/461",
+      "iterations": 67868,
+      "real_time": 9419,
+      "cpu_time": 9419,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/481",
+      "iterations": 67290,
+      "real_time": 9819,
+      "cpu_time": 9818,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/501",
+      "iterations": 61978,
+      "real_time": 10782,
+      "cpu_time": 10782,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/521",
+      "iterations": 60775,
+      "real_time": 10815,
+      "cpu_time": 10815,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/541",
+      "iterations": 58298,
+      "real_time": 11560,
+      "cpu_time": 11560,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/561",
+      "iterations": 56115,
+      "real_time": 11953,
+      "cpu_time": 11953,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/581",
+      "iterations": 52952,
+      "real_time": 12383,
+      "cpu_time": 12381,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/601",
+      "iterations": 50978,
+      "real_time": 12869,
+      "cpu_time": 12869,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/621",
+      "iterations": 50235,
+      "real_time": 13617,
+      "cpu_time": 13617,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/641",
+      "iterations": 47345,
+      "real_time": 13953,
+      "cpu_time": 13953,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/661",
+      "iterations": 44319,
+      "real_time": 15411,
+      "cpu_time": 15410,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/681",
+      "iterations": 42009,
+      "real_time": 16516,
+      "cpu_time": 16516,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/701",
+      "iterations": 40777,
+      "real_time": 16839,
+      "cpu_time": 16836,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/721",
+      "iterations": 38362,
+      "real_time": 17646,
+      "cpu_time": 17646,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/741",
+      "iterations": 36177,
+      "real_time": 18921,
+      "cpu_time": 18920,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/761",
+      "iterations": 34788,
+      "real_time": 19877,
+      "cpu_time": 19877,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/781",
+      "iterations": 32319,
+      "real_time": 21087,
+      "cpu_time": 21086,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/801",
+      "iterations": 31333,
+      "real_time": 21593,
+      "cpu_time": 21593,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/821",
+      "iterations": 30147,
+      "real_time": 22781,
+      "cpu_time": 22781,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/841",
+      "iterations": 28540,
+      "real_time": 23998,
+      "cpu_time": 23998,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/861",
+      "iterations": 26936,
+      "real_time": 25673,
+      "cpu_time": 25669,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/881",
+      "iterations": 27482,
+      "real_time": 25298,
+      "cpu_time": 25296,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/901",
+      "iterations": 24270,
+      "real_time": 27792,
+      "cpu_time": 27792,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/921",
+      "iterations": 24506,
+      "real_time": 27336,
+      "cpu_time": 27336,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/941",
+      "iterations": 23650,
+      "real_time": 29410,
+      "cpu_time": 29410,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/961",
+      "iterations": 22260,
+      "real_time": 30750,
+      "cpu_time": 30745,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PatitionPointBiasedNaive/981",
+      "iterations": 21065,
+      "real_time": 31890,
+      "cpu_time": 31890,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/1",
+      "iterations": 346590,
+      "real_time": 1954,
+      "cpu_time": 1953,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/21",
+      "iterations": 161493,
+      "real_time": 4266,
+      "cpu_time": 4265,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/41",
+      "iterations": 157905,
+      "real_time": 4473,
+      "cpu_time": 4473,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/61",
+      "iterations": 146789,
+      "real_time": 4794,
+      "cpu_time": 4794,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/81",
+      "iterations": 124784,
+      "real_time": 5166,
+      "cpu_time": 5166,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/101",
+      "iterations": 128043,
+      "real_time": 5249,
+      "cpu_time": 5249,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/121",
+      "iterations": 124717,
+      "real_time": 5520,
+      "cpu_time": 5515,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/141",
+      "iterations": 110967,
+      "real_time": 5896,
+      "cpu_time": 5896,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/161",
+      "iterations": 103619,
+      "real_time": 6234,
+      "cpu_time": 6233,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/181",
+      "iterations": 106209,
+      "real_time": 6305,
+      "cpu_time": 6305,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/201",
+      "iterations": 99646,
+      "real_time": 6661,
+      "cpu_time": 6660,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/221",
+      "iterations": 96254,
+      "real_time": 6934,
+      "cpu_time": 6934,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/241",
+      "iterations": 88665,
+      "real_time": 7372,
+      "cpu_time": 7372,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/261",
+      "iterations": 89444,
+      "real_time": 7482,
+      "cpu_time": 7482,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/281",
+      "iterations": 81676,
+      "real_time": 7889,
+      "cpu_time": 7889,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/301",
+      "iterations": 79924,
+      "real_time": 7983,
+      "cpu_time": 7983,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/321",
+      "iterations": 81450,
+      "real_time": 8080,
+      "cpu_time": 8080,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/341",
+      "iterations": 76514,
+      "real_time": 8832,
+      "cpu_time": 8832,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/361",
+      "iterations": 75066,
+      "real_time": 8944,
+      "cpu_time": 8944,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/381",
+      "iterations": 73305,
+      "real_time": 8927,
+      "cpu_time": 8927,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/401",
+      "iterations": 69148,
+      "real_time": 9749,
+      "cpu_time": 9748,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/421",
+      "iterations": 68309,
+      "real_time": 9605,
+      "cpu_time": 9605,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/441",
+      "iterations": 67629,
+      "real_time": 9947,
+      "cpu_time": 9947,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/461",
+      "iterations": 66700,
+      "real_time": 10315,
+      "cpu_time": 10315,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/481",
+      "iterations": 63904,
+      "real_time": 10724,
+      "cpu_time": 10724,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/501",
+      "iterations": 58605,
+      "real_time": 11099,
+      "cpu_time": 11099,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/521",
+      "iterations": 58628,
+      "real_time": 11209,
+      "cpu_time": 11209,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/541",
+      "iterations": 59249,
+      "real_time": 11568,
+      "cpu_time": 11568,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/561",
+      "iterations": 58774,
+      "real_time": 11707,
+      "cpu_time": 11707,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/581",
+      "iterations": 56976,
+      "real_time": 12055,
+      "cpu_time": 12055,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/601",
+      "iterations": 52025,
+      "real_time": 12720,
+      "cpu_time": 12720,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/621",
+      "iterations": 53541,
+      "real_time": 12737,
+      "cpu_time": 12735,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/641",
+      "iterations": 47452,
+      "real_time": 13251,
+      "cpu_time": 13248,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/661",
+      "iterations": 51348,
+      "real_time": 13323,
+      "cpu_time": 13322,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/681",
+      "iterations": 49149,
+      "real_time": 13643,
+      "cpu_time": 13643,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/701",
+      "iterations": 43945,
+      "real_time": 15284,
+      "cpu_time": 15283,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/721",
+      "iterations": 45722,
+      "real_time": 14577,
+      "cpu_time": 14577,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/741",
+      "iterations": 43354,
+      "real_time": 15777,
+      "cpu_time": 15777,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/761",
+      "iterations": 41827,
+      "real_time": 16008,
+      "cpu_time": 16007,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/781",
+      "iterations": 38631,
+      "real_time": 17890,
+      "cpu_time": 17890,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/801",
+      "iterations": 37515,
+      "real_time": 17887,
+      "cpu_time": 17885,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/821",
+      "iterations": 37753,
+      "real_time": 18221,
+      "cpu_time": 18221,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/841",
+      "iterations": 35129,
+      "real_time": 19218,
+      "cpu_time": 19217,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/861",
+      "iterations": 34177,
+      "real_time": 20120,
+      "cpu_time": 20112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/881",
+      "iterations": 32324,
+      "real_time": 21483,
+      "cpu_time": 21482,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/901",
+      "iterations": 32981,
+      "real_time": 20742,
+      "cpu_time": 20742,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/921",
+      "iterations": 30347,
+      "real_time": 22412,
+      "cpu_time": 22411,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/941",
+      "iterations": 30762,
+      "real_time": 22088,
+      "cpu_time": 22088,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/961",
+      "iterations": 28658,
+      "real_time": 23817,
+      "cpu_time": 23817,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/981",
+      "iterations": 27556,
+      "real_time": 24577,
+      "cpu_time": 24575,
+      "time_unit": "ns"
+    }
+  ]
+}

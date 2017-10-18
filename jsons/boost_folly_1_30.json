@@ -1,0 +1,641 @@
+{
+  "context": {
+    "date": "2017-10-18 19:40:52",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2200,
+    "cpu_scaling_enabled": false,
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "baseline/1",
+      "iterations": 5600493,
+      "real_time": 119,
+      "cpu_time": 119,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/2",
+      "iterations": 5826730,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/3",
+      "iterations": 5899059,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/4",
+      "iterations": 5808550,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/5",
+      "iterations": 5827263,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/6",
+      "iterations": 5582716,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/7",
+      "iterations": 6166097,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/8",
+      "iterations": 6025963,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/9",
+      "iterations": 6032923,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/10",
+      "iterations": 5990894,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/11",
+      "iterations": 5921114,
+      "real_time": 116,
+      "cpu_time": 116,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/12",
+      "iterations": 5808454,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/13",
+      "iterations": 6134647,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/14",
+      "iterations": 6051228,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/15",
+      "iterations": 5971473,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/16",
+      "iterations": 5898114,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/17",
+      "iterations": 5903088,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/18",
+      "iterations": 6060134,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/19",
+      "iterations": 5887696,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/20",
+      "iterations": 5974837,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/21",
+      "iterations": 6060344,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/22",
+      "iterations": 6023837,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/23",
+      "iterations": 5938595,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/24",
+      "iterations": 5937839,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/25",
+      "iterations": 5923920,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/26",
+      "iterations": 6060186,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/27",
+      "iterations": 5823821,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/28",
+      "iterations": 5923218,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/29",
+      "iterations": 5898313,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/30",
+      "iterations": 5869135,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/1",
+      "iterations": 2415601,
+      "real_time": 290,
+      "cpu_time": 290,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/2",
+      "iterations": 1967829,
+      "real_time": 350,
+      "cpu_time": 350,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/3",
+      "iterations": 1945931,
+      "real_time": 368,
+      "cpu_time": 368,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/4",
+      "iterations": 1623934,
+      "real_time": 429,
+      "cpu_time": 429,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/5",
+      "iterations": 1465511,
+      "real_time": 475,
+      "cpu_time": 475,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/6",
+      "iterations": 1340714,
+      "real_time": 502,
+      "cpu_time": 502,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/7",
+      "iterations": 1208668,
+      "real_time": 531,
+      "cpu_time": 531,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/8",
+      "iterations": 1092010,
+      "real_time": 610,
+      "cpu_time": 610,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/9",
+      "iterations": 928628,
+      "real_time": 726,
+      "cpu_time": 726,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/10",
+      "iterations": 960430,
+      "real_time": 679,
+      "cpu_time": 679,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/11",
+      "iterations": 959732,
+      "real_time": 678,
+      "cpu_time": 678,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/12",
+      "iterations": 916686,
+      "real_time": 725,
+      "cpu_time": 725,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/13",
+      "iterations": 850072,
+      "real_time": 775,
+      "cpu_time": 775,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/14",
+      "iterations": 828893,
+      "real_time": 796,
+      "cpu_time": 796,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/15",
+      "iterations": 784894,
+      "real_time": 883,
+      "cpu_time": 883,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/16",
+      "iterations": 645661,
+      "real_time": 1016,
+      "cpu_time": 1016,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/17",
+      "iterations": 583416,
+      "real_time": 1165,
+      "cpu_time": 1165,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/18",
+      "iterations": 608553,
+      "real_time": 1085,
+      "cpu_time": 1085,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/19",
+      "iterations": 613685,
+      "real_time": 1154,
+      "cpu_time": 1154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/20",
+      "iterations": 668277,
+      "real_time": 992,
+      "cpu_time": 992,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/21",
+      "iterations": 551390,
+      "real_time": 1197,
+      "cpu_time": 1197,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/22",
+      "iterations": 511621,
+      "real_time": 1267,
+      "cpu_time": 1267,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/23",
+      "iterations": 499394,
+      "real_time": 1362,
+      "cpu_time": 1362,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/24",
+      "iterations": 539499,
+      "real_time": 1292,
+      "cpu_time": 1292,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/25",
+      "iterations": 514263,
+      "real_time": 1353,
+      "cpu_time": 1353,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/26",
+      "iterations": 477304,
+      "real_time": 1408,
+      "cpu_time": 1408,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/27",
+      "iterations": 540186,
+      "real_time": 1223,
+      "cpu_time": 1223,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/28",
+      "iterations": 455459,
+      "real_time": 1524,
+      "cpu_time": 1524,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/29",
+      "iterations": 493170,
+      "real_time": 1400,
+      "cpu_time": 1400,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/30",
+      "iterations": 458223,
+      "real_time": 1524,
+      "cpu_time": 1524,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/1",
+      "iterations": 358034,
+      "real_time": 1917,
+      "cpu_time": 1917,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/2",
+      "iterations": 176666,
+      "real_time": 3944,
+      "cpu_time": 3944,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/3",
+      "iterations": 232061,
+      "real_time": 2951,
+      "cpu_time": 2950,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/4",
+      "iterations": 187647,
+      "real_time": 3680,
+      "cpu_time": 3680,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/5",
+      "iterations": 181580,
+      "real_time": 3846,
+      "cpu_time": 3846,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/6",
+      "iterations": 169947,
+      "real_time": 4105,
+      "cpu_time": 4105,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/7",
+      "iterations": 189630,
+      "real_time": 3626,
+      "cpu_time": 3625,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/8",
+      "iterations": 171856,
+      "real_time": 4044,
+      "cpu_time": 4043,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/9",
+      "iterations": 170481,
+      "real_time": 4065,
+      "cpu_time": 4065,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/10",
+      "iterations": 222173,
+      "real_time": 3139,
+      "cpu_time": 3139,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/11",
+      "iterations": 199030,
+      "real_time": 3478,
+      "cpu_time": 3478,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/12",
+      "iterations": 182789,
+      "real_time": 3788,
+      "cpu_time": 3788,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/13",
+      "iterations": 212153,
+      "real_time": 3310,
+      "cpu_time": 3309,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/14",
+      "iterations": 168574,
+      "real_time": 4114,
+      "cpu_time": 4114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/15",
+      "iterations": 182210,
+      "real_time": 3887,
+      "cpu_time": 3887,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/16",
+      "iterations": 178776,
+      "real_time": 3884,
+      "cpu_time": 3884,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/17",
+      "iterations": 170292,
+      "real_time": 3966,
+      "cpu_time": 3966,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/18",
+      "iterations": 164281,
+      "real_time": 4230,
+      "cpu_time": 4230,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/19",
+      "iterations": 161489,
+      "real_time": 4398,
+      "cpu_time": 4393,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/20",
+      "iterations": 170224,
+      "real_time": 4056,
+      "cpu_time": 4056,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/21",
+      "iterations": 181904,
+      "real_time": 3718,
+      "cpu_time": 3718,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/22",
+      "iterations": 166250,
+      "real_time": 4106,
+      "cpu_time": 4106,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/23",
+      "iterations": 160911,
+      "real_time": 4207,
+      "cpu_time": 4207,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/24",
+      "iterations": 166489,
+      "real_time": 4171,
+      "cpu_time": 4171,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/25",
+      "iterations": 172853,
+      "real_time": 4060,
+      "cpu_time": 4059,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/26",
+      "iterations": 174235,
+      "real_time": 4001,
+      "cpu_time": 4001,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/27",
+      "iterations": 165725,
+      "real_time": 4213,
+      "cpu_time": 4213,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/28",
+      "iterations": 169450,
+      "real_time": 4103,
+      "cpu_time": 4103,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/29",
+      "iterations": 179472,
+      "real_time": 3904,
+      "cpu_time": 3904,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/30",
+      "iterations": 162891,
+      "real_time": 4324,
+      "cpu_time": 4324,
+      "time_unit": "ns"
+    }
+  ]
+}

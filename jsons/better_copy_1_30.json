@@ -1,0 +1,641 @@
+{
+  "context": {
+    "date": "2017-10-19 00:24:31",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2200,
+    "cpu_scaling_enabled": false,
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "baseline/1",
+      "iterations": 5821206,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/2",
+      "iterations": 5981270,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/3",
+      "iterations": 6029649,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/4",
+      "iterations": 5928586,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/5",
+      "iterations": 6142075,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/6",
+      "iterations": 6033443,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/7",
+      "iterations": 6135131,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/8",
+      "iterations": 5962623,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/9",
+      "iterations": 6120272,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/10",
+      "iterations": 5940762,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/11",
+      "iterations": 5944293,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/12",
+      "iterations": 6170282,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/13",
+      "iterations": 6107669,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/14",
+      "iterations": 6022593,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/15",
+      "iterations": 5981475,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/16",
+      "iterations": 6086269,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/17",
+      "iterations": 6015451,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/18",
+      "iterations": 6014727,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/19",
+      "iterations": 5872877,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/20",
+      "iterations": 5938998,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/21",
+      "iterations": 6016692,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/22",
+      "iterations": 5809852,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/23",
+      "iterations": 6137820,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/24",
+      "iterations": 5886607,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/25",
+      "iterations": 6030791,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/26",
+      "iterations": 5942124,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/27",
+      "iterations": 5827845,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/28",
+      "iterations": 5960338,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/29",
+      "iterations": 6067120,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/30",
+      "iterations": 5936278,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/1",
+      "iterations": 2004174,
+      "real_time": 318,
+      "cpu_time": 318,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/2",
+      "iterations": 1762492,
+      "real_time": 373,
+      "cpu_time": 373,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/3",
+      "iterations": 1696657,
+      "real_time": 404,
+      "cpu_time": 404,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/4",
+      "iterations": 1552024,
+      "real_time": 455,
+      "cpu_time": 455,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/5",
+      "iterations": 1464913,
+      "real_time": 473,
+      "cpu_time": 473,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/6",
+      "iterations": 1198897,
+      "real_time": 538,
+      "cpu_time": 538,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/7",
+      "iterations": 1275975,
+      "real_time": 532,
+      "cpu_time": 532,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/8",
+      "iterations": 1138452,
+      "real_time": 563,
+      "cpu_time": 563,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/9",
+      "iterations": 1032601,
+      "real_time": 602,
+      "cpu_time": 602,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/10",
+      "iterations": 1029033,
+      "real_time": 640,
+      "cpu_time": 640,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/11",
+      "iterations": 993486,
+      "real_time": 695,
+      "cpu_time": 695,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/12",
+      "iterations": 947149,
+      "real_time": 713,
+      "cpu_time": 713,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/13",
+      "iterations": 976263,
+      "real_time": 667,
+      "cpu_time": 667,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/14",
+      "iterations": 814465,
+      "real_time": 833,
+      "cpu_time": 833,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/15",
+      "iterations": 877633,
+      "real_time": 769,
+      "cpu_time": 769,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/16",
+      "iterations": 777294,
+      "real_time": 867,
+      "cpu_time": 867,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/17",
+      "iterations": 807913,
+      "real_time": 824,
+      "cpu_time": 824,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/18",
+      "iterations": 753352,
+      "real_time": 877,
+      "cpu_time": 877,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/19",
+      "iterations": 713827,
+      "real_time": 955,
+      "cpu_time": 955,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/20",
+      "iterations": 758635,
+      "real_time": 895,
+      "cpu_time": 895,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/21",
+      "iterations": 687272,
+      "real_time": 962,
+      "cpu_time": 962,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/22",
+      "iterations": 666216,
+      "real_time": 987,
+      "cpu_time": 987,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/23",
+      "iterations": 652188,
+      "real_time": 1016,
+      "cpu_time": 1015,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/24",
+      "iterations": 667729,
+      "real_time": 986,
+      "cpu_time": 986,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/25",
+      "iterations": 653192,
+      "real_time": 1005,
+      "cpu_time": 1005,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/26",
+      "iterations": 636960,
+      "real_time": 1054,
+      "cpu_time": 1053,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/27",
+      "iterations": 578742,
+      "real_time": 1181,
+      "cpu_time": 1181,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/28",
+      "iterations": 593678,
+      "real_time": 1165,
+      "cpu_time": 1165,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/29",
+      "iterations": 573789,
+      "real_time": 1174,
+      "cpu_time": 1174,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/30",
+      "iterations": 585774,
+      "real_time": 1175,
+      "cpu_time": 1175,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/1",
+      "iterations": 2463904,
+      "real_time": 274,
+      "cpu_time": 274,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/2",
+      "iterations": 2116421,
+      "real_time": 339,
+      "cpu_time": 339,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/3",
+      "iterations": 1879901,
+      "real_time": 367,
+      "cpu_time": 367,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/4",
+      "iterations": 1614194,
+      "real_time": 433,
+      "cpu_time": 433,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/5",
+      "iterations": 1402426,
+      "real_time": 495,
+      "cpu_time": 495,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/6",
+      "iterations": 1385206,
+      "real_time": 498,
+      "cpu_time": 498,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/7",
+      "iterations": 1218833,
+      "real_time": 554,
+      "cpu_time": 554,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/8",
+      "iterations": 962808,
+      "real_time": 632,
+      "cpu_time": 632,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/9",
+      "iterations": 938955,
+      "real_time": 704,
+      "cpu_time": 704,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/10",
+      "iterations": 1004535,
+      "real_time": 627,
+      "cpu_time": 627,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/11",
+      "iterations": 983809,
+      "real_time": 682,
+      "cpu_time": 682,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/12",
+      "iterations": 862111,
+      "real_time": 699,
+      "cpu_time": 699,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/13",
+      "iterations": 837932,
+      "real_time": 802,
+      "cpu_time": 802,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/14",
+      "iterations": 851033,
+      "real_time": 792,
+      "cpu_time": 792,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/15",
+      "iterations": 788404,
+      "real_time": 825,
+      "cpu_time": 825,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/16",
+      "iterations": 640029,
+      "real_time": 1040,
+      "cpu_time": 1040,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/17",
+      "iterations": 563448,
+      "real_time": 1167,
+      "cpu_time": 1167,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/18",
+      "iterations": 591166,
+      "real_time": 1092,
+      "cpu_time": 1092,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/19",
+      "iterations": 602550,
+      "real_time": 1256,
+      "cpu_time": 1249,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/20",
+      "iterations": 645280,
+      "real_time": 1099,
+      "cpu_time": 1093,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/21",
+      "iterations": 535598,
+      "real_time": 1265,
+      "cpu_time": 1262,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/22",
+      "iterations": 500314,
+      "real_time": 1404,
+      "cpu_time": 1392,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/23",
+      "iterations": 465132,
+      "real_time": 1310,
+      "cpu_time": 1309,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/24",
+      "iterations": 559065,
+      "real_time": 1219,
+      "cpu_time": 1219,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/25",
+      "iterations": 512366,
+      "real_time": 1324,
+      "cpu_time": 1324,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/26",
+      "iterations": 486412,
+      "real_time": 1370,
+      "cpu_time": 1370,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/27",
+      "iterations": 553920,
+      "real_time": 1236,
+      "cpu_time": 1236,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/28",
+      "iterations": 471390,
+      "real_time": 1468,
+      "cpu_time": 1468,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/29",
+      "iterations": 520245,
+      "real_time": 1318,
+      "cpu_time": 1318,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/30",
+      "iterations": 460669,
+      "real_time": 1491,
+      "cpu_time": 1491,
+      "time_unit": "ns"
+    }
+  ]
+}

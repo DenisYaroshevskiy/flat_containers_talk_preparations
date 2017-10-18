@@ -1,0 +1,1061 @@
+{
+  "context": {
+    "date": "2017-10-18 19:49:37",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2200,
+    "cpu_scaling_enabled": false,
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "baseline/1",
+      "iterations": 5850348,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/21",
+      "iterations": 5872089,
+      "real_time": 116,
+      "cpu_time": 116,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/41",
+      "iterations": 6143584,
+      "real_time": 122,
+      "cpu_time": 122,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/61",
+      "iterations": 5876427,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/81",
+      "iterations": 6066699,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/101",
+      "iterations": 5989407,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/121",
+      "iterations": 6029337,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/141",
+      "iterations": 6098411,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/161",
+      "iterations": 6014056,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/181",
+      "iterations": 6063178,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/201",
+      "iterations": 6103516,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/221",
+      "iterations": 6037970,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/241",
+      "iterations": 6137497,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/261",
+      "iterations": 6039481,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/281",
+      "iterations": 6041670,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/301",
+      "iterations": 5939149,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/321",
+      "iterations": 5964299,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/341",
+      "iterations": 5954356,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/361",
+      "iterations": 5899556,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/381",
+      "iterations": 6090505,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/401",
+      "iterations": 6106657,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/421",
+      "iterations": 5886459,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/441",
+      "iterations": 5857250,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/461",
+      "iterations": 6120593,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/481",
+      "iterations": 6133894,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/501",
+      "iterations": 6078922,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/521",
+      "iterations": 5903287,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/541",
+      "iterations": 5960338,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/561",
+      "iterations": 6083148,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/581",
+      "iterations": 5882501,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/601",
+      "iterations": 5962166,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/621",
+      "iterations": 5927281,
+      "real_time": 116,
+      "cpu_time": 116,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/641",
+      "iterations": 6030999,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/661",
+      "iterations": 5816369,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/681",
+      "iterations": 6114765,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/701",
+      "iterations": 5942023,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/721",
+      "iterations": 5904682,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/741",
+      "iterations": 5888291,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/761",
+      "iterations": 6079661,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/781",
+      "iterations": 5997567,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/801",
+      "iterations": 6042922,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/821",
+      "iterations": 5911763,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/841",
+      "iterations": 5889628,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/861",
+      "iterations": 5961049,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/881",
+      "iterations": 5987563,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/901",
+      "iterations": 5923018,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/921",
+      "iterations": 5922166,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/941",
+      "iterations": 5929992,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/961",
+      "iterations": 5860781,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/981",
+      "iterations": 6026949,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/1",
+      "iterations": 2324840,
+      "real_time": 279,
+      "cpu_time": 279,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/21",
+      "iterations": 492434,
+      "real_time": 1380,
+      "cpu_time": 1380,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/41",
+      "iterations": 289890,
+      "real_time": 2356,
+      "cpu_time": 2356,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/61",
+      "iterations": 223324,
+      "real_time": 3147,
+      "cpu_time": 3147,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/81",
+      "iterations": 159122,
+      "real_time": 4698,
+      "cpu_time": 4697,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/101",
+      "iterations": 111353,
+      "real_time": 5902,
+      "cpu_time": 5902,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/121",
+      "iterations": 103371,
+      "real_time": 6293,
+      "cpu_time": 6293,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/141",
+      "iterations": 82314,
+      "real_time": 7714,
+      "cpu_time": 7714,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/161",
+      "iterations": 72866,
+      "real_time": 9574,
+      "cpu_time": 9574,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/181",
+      "iterations": 62327,
+      "real_time": 11072,
+      "cpu_time": 11072,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/201",
+      "iterations": 54130,
+      "real_time": 12826,
+      "cpu_time": 12826,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/221",
+      "iterations": 45943,
+      "real_time": 15075,
+      "cpu_time": 15075,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/241",
+      "iterations": 41830,
+      "real_time": 16147,
+      "cpu_time": 16144,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/261",
+      "iterations": 37891,
+      "real_time": 17978,
+      "cpu_time": 17978,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/281",
+      "iterations": 33462,
+      "real_time": 20400,
+      "cpu_time": 20400,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/301",
+      "iterations": 30870,
+      "real_time": 22274,
+      "cpu_time": 22274,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/321",
+      "iterations": 28939,
+      "real_time": 23525,
+      "cpu_time": 23525,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/341",
+      "iterations": 26015,
+      "real_time": 25848,
+      "cpu_time": 25848,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/361",
+      "iterations": 24875,
+      "real_time": 28055,
+      "cpu_time": 28048,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/381",
+      "iterations": 22632,
+      "real_time": 30649,
+      "cpu_time": 30647,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/401",
+      "iterations": 21060,
+      "real_time": 32286,
+      "cpu_time": 32286,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/421",
+      "iterations": 19880,
+      "real_time": 34752,
+      "cpu_time": 34752,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/441",
+      "iterations": 19102,
+      "real_time": 36449,
+      "cpu_time": 36448,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/461",
+      "iterations": 18144,
+      "real_time": 38866,
+      "cpu_time": 38861,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/481",
+      "iterations": 17559,
+      "real_time": 39532,
+      "cpu_time": 39531,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/501",
+      "iterations": 16390,
+      "real_time": 42337,
+      "cpu_time": 42336,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/521",
+      "iterations": 16081,
+      "real_time": 44693,
+      "cpu_time": 44693,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/541",
+      "iterations": 15032,
+      "real_time": 45236,
+      "cpu_time": 45236,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/561",
+      "iterations": 14411,
+      "real_time": 47891,
+      "cpu_time": 47890,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/581",
+      "iterations": 13515,
+      "real_time": 51606,
+      "cpu_time": 51598,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/601",
+      "iterations": 12258,
+      "real_time": 52956,
+      "cpu_time": 52955,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/621",
+      "iterations": 12087,
+      "real_time": 53537,
+      "cpu_time": 53537,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/641",
+      "iterations": 11579,
+      "real_time": 57195,
+      "cpu_time": 57195,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/661",
+      "iterations": 10893,
+      "real_time": 60109,
+      "cpu_time": 60109,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/681",
+      "iterations": 10809,
+      "real_time": 60277,
+      "cpu_time": 60277,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/701",
+      "iterations": 10535,
+      "real_time": 63353,
+      "cpu_time": 63336,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/721",
+      "iterations": 9971,
+      "real_time": 65032,
+      "cpu_time": 65032,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/741",
+      "iterations": 10116,
+      "real_time": 66325,
+      "cpu_time": 66324,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/761",
+      "iterations": 9744,
+      "real_time": 68979,
+      "cpu_time": 68978,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/781",
+      "iterations": 9189,
+      "real_time": 72698,
+      "cpu_time": 72698,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/801",
+      "iterations": 8948,
+      "real_time": 73497,
+      "cpu_time": 73497,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/821",
+      "iterations": 8486,
+      "real_time": 76297,
+      "cpu_time": 76296,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/841",
+      "iterations": 8471,
+      "real_time": 78974,
+      "cpu_time": 78960,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/861",
+      "iterations": 7912,
+      "real_time": 80761,
+      "cpu_time": 80761,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/881",
+      "iterations": 8026,
+      "real_time": 82596,
+      "cpu_time": 82596,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/901",
+      "iterations": 7682,
+      "real_time": 86233,
+      "cpu_time": 86233,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/921",
+      "iterations": 7640,
+      "real_time": 88167,
+      "cpu_time": 88165,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/941",
+      "iterations": 7354,
+      "real_time": 93479,
+      "cpu_time": 93462,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/961",
+      "iterations": 7112,
+      "real_time": 95152,
+      "cpu_time": 95149,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Boost/981",
+      "iterations": 6869,
+      "real_time": 97635,
+      "cpu_time": 97615,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/1",
+      "iterations": 350307,
+      "real_time": 1934,
+      "cpu_time": 1934,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/21",
+      "iterations": 158922,
+      "real_time": 4246,
+      "cpu_time": 4244,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/41",
+      "iterations": 154010,
+      "real_time": 4488,
+      "cpu_time": 4488,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/61",
+      "iterations": 145533,
+      "real_time": 4790,
+      "cpu_time": 4790,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/81",
+      "iterations": 125217,
+      "real_time": 5126,
+      "cpu_time": 5125,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/101",
+      "iterations": 126575,
+      "real_time": 5291,
+      "cpu_time": 5289,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/121",
+      "iterations": 121807,
+      "real_time": 5527,
+      "cpu_time": 5527,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/141",
+      "iterations": 113651,
+      "real_time": 5875,
+      "cpu_time": 5875,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/161",
+      "iterations": 100034,
+      "real_time": 6369,
+      "cpu_time": 6369,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/181",
+      "iterations": 104528,
+      "real_time": 6289,
+      "cpu_time": 6289,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/201",
+      "iterations": 96182,
+      "real_time": 6619,
+      "cpu_time": 6619,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/221",
+      "iterations": 97745,
+      "real_time": 6998,
+      "cpu_time": 6998,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/241",
+      "iterations": 87230,
+      "real_time": 7575,
+      "cpu_time": 7573,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/261",
+      "iterations": 87789,
+      "real_time": 7567,
+      "cpu_time": 7567,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/281",
+      "iterations": 84072,
+      "real_time": 7988,
+      "cpu_time": 7988,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/301",
+      "iterations": 79647,
+      "real_time": 8170,
+      "cpu_time": 8169,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/321",
+      "iterations": 81746,
+      "real_time": 8165,
+      "cpu_time": 8164,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/341",
+      "iterations": 76563,
+      "real_time": 8901,
+      "cpu_time": 8901,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/361",
+      "iterations": 72166,
+      "real_time": 8977,
+      "cpu_time": 8977,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/381",
+      "iterations": 74108,
+      "real_time": 9128,
+      "cpu_time": 9126,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/401",
+      "iterations": 68379,
+      "real_time": 9820,
+      "cpu_time": 9820,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/421",
+      "iterations": 69908,
+      "real_time": 9741,
+      "cpu_time": 9741,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/441",
+      "iterations": 66847,
+      "real_time": 10319,
+      "cpu_time": 10319,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/461",
+      "iterations": 66137,
+      "real_time": 10267,
+      "cpu_time": 10267,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/481",
+      "iterations": 59289,
+      "real_time": 10829,
+      "cpu_time": 10829,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/501",
+      "iterations": 61726,
+      "real_time": 10923,
+      "cpu_time": 10923,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/521",
+      "iterations": 58040,
+      "real_time": 11402,
+      "cpu_time": 11400,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/541",
+      "iterations": 57165,
+      "real_time": 11725,
+      "cpu_time": 11724,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/561",
+      "iterations": 57622,
+      "real_time": 11870,
+      "cpu_time": 11870,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/581",
+      "iterations": 54908,
+      "real_time": 12012,
+      "cpu_time": 12011,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/601",
+      "iterations": 52813,
+      "real_time": 12820,
+      "cpu_time": 12819,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/621",
+      "iterations": 52514,
+      "real_time": 12941,
+      "cpu_time": 12941,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/641",
+      "iterations": 50610,
+      "real_time": 13221,
+      "cpu_time": 13221,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/661",
+      "iterations": 48829,
+      "real_time": 13558,
+      "cpu_time": 13555,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/681",
+      "iterations": 47600,
+      "real_time": 14018,
+      "cpu_time": 14018,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/701",
+      "iterations": 44272,
+      "real_time": 15403,
+      "cpu_time": 15403,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/721",
+      "iterations": 41986,
+      "real_time": 15188,
+      "cpu_time": 15188,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/741",
+      "iterations": 41877,
+      "real_time": 16537,
+      "cpu_time": 16537,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/761",
+      "iterations": 40039,
+      "real_time": 16889,
+      "cpu_time": 16889,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/781",
+      "iterations": 36299,
+      "real_time": 18504,
+      "cpu_time": 18501,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/801",
+      "iterations": 36986,
+      "real_time": 18596,
+      "cpu_time": 18596,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/821",
+      "iterations": 36203,
+      "real_time": 18685,
+      "cpu_time": 18685,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/841",
+      "iterations": 34294,
+      "real_time": 19710,
+      "cpu_time": 19710,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/861",
+      "iterations": 33779,
+      "real_time": 20295,
+      "cpu_time": 20295,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/881",
+      "iterations": 31507,
+      "real_time": 21495,
+      "cpu_time": 21495,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/901",
+      "iterations": 32885,
+      "real_time": 20944,
+      "cpu_time": 20940,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/921",
+      "iterations": 29198,
+      "real_time": 22588,
+      "cpu_time": 22588,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/941",
+      "iterations": 30511,
+      "real_time": 22125,
+      "cpu_time": 22125,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/961",
+      "iterations": 28051,
+      "real_time": 23967,
+      "cpu_time": 23966,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/981",
+      "iterations": 28121,
+      "real_time": 24488,
+      "cpu_time": 24488,
+      "time_unit": "ns"
+    }
+  ]
+}

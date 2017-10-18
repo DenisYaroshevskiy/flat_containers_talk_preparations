@@ -1,0 +1,1061 @@
+{
+  "context": {
+    "date": "2017-10-19 00:38:26",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2200,
+    "cpu_scaling_enabled": false,
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "baseline/1",
+      "iterations": 5902740,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/21",
+      "iterations": 6165880,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/41",
+      "iterations": 6026015,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/61",
+      "iterations": 6035940,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/81",
+      "iterations": 6133303,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/101",
+      "iterations": 5884034,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/121",
+      "iterations": 6021713,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/141",
+      "iterations": 6127773,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/161",
+      "iterations": 5943486,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/181",
+      "iterations": 5893645,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/201",
+      "iterations": 6056778,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/221",
+      "iterations": 5961709,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/241",
+      "iterations": 5978103,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/261",
+      "iterations": 6029804,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/281",
+      "iterations": 6079133,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/301",
+      "iterations": 6039741,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/321",
+      "iterations": 6078763,
+      "real_time": 112,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/341",
+      "iterations": 5906176,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/361",
+      "iterations": 5915110,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/381",
+      "iterations": 5907223,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/401",
+      "iterations": 6057354,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/421",
+      "iterations": 6091671,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/441",
+      "iterations": 5951824,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/461",
+      "iterations": 6075123,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/481",
+      "iterations": 5982395,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/501",
+      "iterations": 5965468,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/521",
+      "iterations": 6134539,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/541",
+      "iterations": 6139382,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/561",
+      "iterations": 5972951,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/581",
+      "iterations": 6113537,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/601",
+      "iterations": 6067435,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/621",
+      "iterations": 6096924,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/641",
+      "iterations": 6144987,
+      "real_time": 115,
+      "cpu_time": 115,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/661",
+      "iterations": 6093474,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/681",
+      "iterations": 6000189,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/701",
+      "iterations": 6009770,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/721",
+      "iterations": 6037554,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/741",
+      "iterations": 6095013,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/761",
+      "iterations": 5991868,
+      "real_time": 115,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/781",
+      "iterations": 6015658,
+      "real_time": 116,
+      "cpu_time": 116,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/801",
+      "iterations": 5894092,
+      "real_time": 116,
+      "cpu_time": 116,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/821",
+      "iterations": 5851669,
+      "real_time": 118,
+      "cpu_time": 118,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/841",
+      "iterations": 5909367,
+      "real_time": 119,
+      "cpu_time": 119,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/861",
+      "iterations": 6088227,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/881",
+      "iterations": 6042453,
+      "real_time": 111,
+      "cpu_time": 111,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/901",
+      "iterations": 6171479,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/921",
+      "iterations": 5997156,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/941",
+      "iterations": 6110655,
+      "real_time": 114,
+      "cpu_time": 114,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/961",
+      "iterations": 6026067,
+      "real_time": 112,
+      "cpu_time": 112,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/981",
+      "iterations": 6028091,
+      "real_time": 113,
+      "cpu_time": 113,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/1",
+      "iterations": 1985613,
+      "real_time": 344,
+      "cpu_time": 344,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/21",
+      "iterations": 670466,
+      "real_time": 949,
+      "cpu_time": 949,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/41",
+      "iterations": 464669,
+      "real_time": 1495,
+      "cpu_time": 1495,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/61",
+      "iterations": 363941,
+      "real_time": 1927,
+      "cpu_time": 1927,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/81",
+      "iterations": 291317,
+      "real_time": 2381,
+      "cpu_time": 2381,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/101",
+      "iterations": 242365,
+      "real_time": 2808,
+      "cpu_time": 2808,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/121",
+      "iterations": 205813,
+      "real_time": 3315,
+      "cpu_time": 3314,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/141",
+      "iterations": 184955,
+      "real_time": 3735,
+      "cpu_time": 3735,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/161",
+      "iterations": 164364,
+      "real_time": 4224,
+      "cpu_time": 4224,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/181",
+      "iterations": 138894,
+      "real_time": 4721,
+      "cpu_time": 4721,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/201",
+      "iterations": 129316,
+      "real_time": 5037,
+      "cpu_time": 5037,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/221",
+      "iterations": 113355,
+      "real_time": 5925,
+      "cpu_time": 5925,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/241",
+      "iterations": 110597,
+      "real_time": 5926,
+      "cpu_time": 5926,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/261",
+      "iterations": 105838,
+      "real_time": 6355,
+      "cpu_time": 6355,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/281",
+      "iterations": 95988,
+      "real_time": 7000,
+      "cpu_time": 7000,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/301",
+      "iterations": 94082,
+      "real_time": 7225,
+      "cpu_time": 7223,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/321",
+      "iterations": 88979,
+      "real_time": 7442,
+      "cpu_time": 7442,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/341",
+      "iterations": 82868,
+      "real_time": 8197,
+      "cpu_time": 8196,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/361",
+      "iterations": 79559,
+      "real_time": 8504,
+      "cpu_time": 8504,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/381",
+      "iterations": 73526,
+      "real_time": 8973,
+      "cpu_time": 8971,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/401",
+      "iterations": 69959,
+      "real_time": 9482,
+      "cpu_time": 9482,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/421",
+      "iterations": 67883,
+      "real_time": 10009,
+      "cpu_time": 10009,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/441",
+      "iterations": 65146,
+      "real_time": 10301,
+      "cpu_time": 10301,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/461",
+      "iterations": 63677,
+      "real_time": 10482,
+      "cpu_time": 10481,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/481",
+      "iterations": 58204,
+      "real_time": 11238,
+      "cpu_time": 11237,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/501",
+      "iterations": 56846,
+      "real_time": 11586,
+      "cpu_time": 11586,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/521",
+      "iterations": 55907,
+      "real_time": 12061,
+      "cpu_time": 12058,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/541",
+      "iterations": 54455,
+      "real_time": 12206,
+      "cpu_time": 12206,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/561",
+      "iterations": 53064,
+      "real_time": 12457,
+      "cpu_time": 12450,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/581",
+      "iterations": 49083,
+      "real_time": 13646,
+      "cpu_time": 13646,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/601",
+      "iterations": 44451,
+      "real_time": 15339,
+      "cpu_time": 15339,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/621",
+      "iterations": 44772,
+      "real_time": 14527,
+      "cpu_time": 14527,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/641",
+      "iterations": 43901,
+      "real_time": 15370,
+      "cpu_time": 15367,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/661",
+      "iterations": 40382,
+      "real_time": 16932,
+      "cpu_time": 16931,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/681",
+      "iterations": 40986,
+      "real_time": 16266,
+      "cpu_time": 16266,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/701",
+      "iterations": 36475,
+      "real_time": 18575,
+      "cpu_time": 18575,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/721",
+      "iterations": 37930,
+      "real_time": 17917,
+      "cpu_time": 17917,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/741",
+      "iterations": 36249,
+      "real_time": 19185,
+      "cpu_time": 19179,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/761",
+      "iterations": 34354,
+      "real_time": 20144,
+      "cpu_time": 20141,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/781",
+      "iterations": 32169,
+      "real_time": 21367,
+      "cpu_time": 21367,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/801",
+      "iterations": 30923,
+      "real_time": 21635,
+      "cpu_time": 21634,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/821",
+      "iterations": 30506,
+      "real_time": 22497,
+      "cpu_time": 22496,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/841",
+      "iterations": 27790,
+      "real_time": 23738,
+      "cpu_time": 23738,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/861",
+      "iterations": 27579,
+      "real_time": 24853,
+      "cpu_time": 24853,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/881",
+      "iterations": 26835,
+      "real_time": 25658,
+      "cpu_time": 25653,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/901",
+      "iterations": 24881,
+      "real_time": 26506,
+      "cpu_time": 26501,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/921",
+      "iterations": 25805,
+      "real_time": 26881,
+      "cpu_time": 26881,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/941",
+      "iterations": 24608,
+      "real_time": 28033,
+      "cpu_time": 28031,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/961",
+      "iterations": 23716,
+      "real_time": 29576,
+      "cpu_time": 29575,
+      "time_unit": "ns"
+    },
+    {
+      "name": "UseMemmove/981",
+      "iterations": 22302,
+      "real_time": 30730,
+      "cpu_time": 30729,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/1",
+      "iterations": 355094,
+      "real_time": 1921,
+      "cpu_time": 1921,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/21",
+      "iterations": 161148,
+      "real_time": 4333,
+      "cpu_time": 4332,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/41",
+      "iterations": 155967,
+      "real_time": 4538,
+      "cpu_time": 4538,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/61",
+      "iterations": 143220,
+      "real_time": 4837,
+      "cpu_time": 4837,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/81",
+      "iterations": 122684,
+      "real_time": 5250,
+      "cpu_time": 5250,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/101",
+      "iterations": 125235,
+      "real_time": 5397,
+      "cpu_time": 5396,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/121",
+      "iterations": 113338,
+      "real_time": 5707,
+      "cpu_time": 5707,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/141",
+      "iterations": 106918,
+      "real_time": 6098,
+      "cpu_time": 6097,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/161",
+      "iterations": 97772,
+      "real_time": 6481,
+      "cpu_time": 6481,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/181",
+      "iterations": 98866,
+      "real_time": 6429,
+      "cpu_time": 6429,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/201",
+      "iterations": 92274,
+      "real_time": 6897,
+      "cpu_time": 6897,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/221",
+      "iterations": 92313,
+      "real_time": 7104,
+      "cpu_time": 7104,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/241",
+      "iterations": 85116,
+      "real_time": 7827,
+      "cpu_time": 7821,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/261",
+      "iterations": 84712,
+      "real_time": 7664,
+      "cpu_time": 7664,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/281",
+      "iterations": 78176,
+      "real_time": 8300,
+      "cpu_time": 8300,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/301",
+      "iterations": 80433,
+      "real_time": 8321,
+      "cpu_time": 8321,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/321",
+      "iterations": 80619,
+      "real_time": 8367,
+      "cpu_time": 8367,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/341",
+      "iterations": 73259,
+      "real_time": 9219,
+      "cpu_time": 9219,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/361",
+      "iterations": 74349,
+      "real_time": 9225,
+      "cpu_time": 9225,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/381",
+      "iterations": 72532,
+      "real_time": 9397,
+      "cpu_time": 9397,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/401",
+      "iterations": 63606,
+      "real_time": 10060,
+      "cpu_time": 10059,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/421",
+      "iterations": 67590,
+      "real_time": 10010,
+      "cpu_time": 10009,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/441",
+      "iterations": 64284,
+      "real_time": 10705,
+      "cpu_time": 10704,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/461",
+      "iterations": 62218,
+      "real_time": 10848,
+      "cpu_time": 10847,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/481",
+      "iterations": 57612,
+      "real_time": 11215,
+      "cpu_time": 11215,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/501",
+      "iterations": 58549,
+      "real_time": 11674,
+      "cpu_time": 11674,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/521",
+      "iterations": 57229,
+      "real_time": 11911,
+      "cpu_time": 11910,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/541",
+      "iterations": 56983,
+      "real_time": 12106,
+      "cpu_time": 12106,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/561",
+      "iterations": 54795,
+      "real_time": 12232,
+      "cpu_time": 12232,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/581",
+      "iterations": 54626,
+      "real_time": 12666,
+      "cpu_time": 12665,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/601",
+      "iterations": 50482,
+      "real_time": 13392,
+      "cpu_time": 13392,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/621",
+      "iterations": 51064,
+      "real_time": 13421,
+      "cpu_time": 13421,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/641",
+      "iterations": 48455,
+      "real_time": 14187,
+      "cpu_time": 14186,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/661",
+      "iterations": 48292,
+      "real_time": 14040,
+      "cpu_time": 14038,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/681",
+      "iterations": 47035,
+      "real_time": 14654,
+      "cpu_time": 14654,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/701",
+      "iterations": 44636,
+      "real_time": 15222,
+      "cpu_time": 15222,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/721",
+      "iterations": 44137,
+      "real_time": 15104,
+      "cpu_time": 15104,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/741",
+      "iterations": 42310,
+      "real_time": 15809,
+      "cpu_time": 15809,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/761",
+      "iterations": 41971,
+      "real_time": 16027,
+      "cpu_time": 16027,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/781",
+      "iterations": 38765,
+      "real_time": 17278,
+      "cpu_time": 17278,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/801",
+      "iterations": 37424,
+      "real_time": 17904,
+      "cpu_time": 17902,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/821",
+      "iterations": 37751,
+      "real_time": 17917,
+      "cpu_time": 17917,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/841",
+      "iterations": 36071,
+      "real_time": 18961,
+      "cpu_time": 18958,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/861",
+      "iterations": 34515,
+      "real_time": 19664,
+      "cpu_time": 19664,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/881",
+      "iterations": 32339,
+      "real_time": 20945,
+      "cpu_time": 20944,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/901",
+      "iterations": 34408,
+      "real_time": 19744,
+      "cpu_time": 19744,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/921",
+      "iterations": 29767,
+      "real_time": 21951,
+      "cpu_time": 21951,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/941",
+      "iterations": 32382,
+      "real_time": 21166,
+      "cpu_time": 21162,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/961",
+      "iterations": 29838,
+      "real_time": 23607,
+      "cpu_time": 23579,
+      "time_unit": "ns"
+    },
+    {
+      "name": "Folly/981",
+      "iterations": 29993,
+      "real_time": 23582,
+      "cpu_time": 23580,
+      "time_unit": "ns"
+    }
+  ]
+}
