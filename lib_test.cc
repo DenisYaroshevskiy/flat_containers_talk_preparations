@@ -50,6 +50,8 @@ using int_vec = int_set::underlying_type;
 using strange_cmp_set = lib::flat_set<int, strange_cmp>;
 using reverse_set = lib::flat_set<int, std::greater<int>>;
 
+
+
 template <bool is_lower_bound, typename F>
 void binary_search_test(F f) {
   std::vector<int> v(1000u);
@@ -82,39 +84,28 @@ struct template_constructor {
 
 }  // namespace
 
-TEST_CASE("sentinal_test", "[partition_point_biased]") {
-  for (size_t size = 0; size < 1000; ++size) {
-    std::vector<int> v(size);
-    std::iota(v.begin(), v.end(), 0);
-    for (int looking_for : v) {
-      auto expected = std::lower_bound(v.begin(), v.end(), looking_for);
-      auto actual = lib::lower_bound_biased(v.begin(), v.end(), looking_for);
+TEST_CASE("lower_bounds", "[partion_point_bised_t]") {
+  std::vector<int> v(1000u);
+
+  for (int i = 0; i < static_cast<int>(v.size()); i += 2) {
+    v[i] = i;
+    v[i + 1] = i;
+  }
+
+  for (auto starting_point = v.begin(); starting_point != v.end();
+       ++starting_point) {
+    auto previous_res = starting_point;
+    lib::lower_bounds_t<decltype(starting_point)> device{starting_point,
+                                                         v.end()};
+
+    for (int looking_for = *starting_point - 1; looking_for < 1000;
+         ++looking_for) {
+      auto expected = std::lower_bound(previous_res, v.end(), looking_for);
+      auto actual = device(looking_for);
       REQUIRE(expected == actual);
+      previous_res = expected;
     }
   }
-}
-
-TEST_CASE("lower_bounds", "[partition_point_biased]") {
-  using it = std::vector<int>::iterator;
-  binary_search_test<true>([](it f, it hint, it l, int looking_for) {
-    return lib::lower_bound_linear(f, l, looking_for);
-  });
-  binary_search_test<true>([](it f, it hint, it l, int looking_for) {
-    return lib::lower_bound_biased(f, l, looking_for);
-  });
-  binary_search_test<true>([](it f, it hint, it l, int looking_for) {
-    return lib::lower_bound_hinted(f, hint, l, looking_for);
-  });
-}
-
-TEST_CASE("upper_bounds", "[partition_point_biased]") {
-  using it = std::vector<int>::iterator;
-  binary_search_test<false>([](it f, it hint, it l, int looking_for) {
-    return lib::upper_bound_biased(f, l, looking_for);
-  });
-  binary_search_test<false>([](it f, it hint, it l, int looking_for) {
-    return lib::upper_bound_hinted(f, hint, l, looking_for);
-  });
 }
 
 TEST_CASE("set_union_unbalanced", "[merge_algorithms]") {

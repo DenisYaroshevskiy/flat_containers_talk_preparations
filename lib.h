@@ -8,8 +8,6 @@
 #include <type_traits>
 #include <vector>
 
-#include "older_partition_points.h"
-
 namespace lib {
 
 // meta functions -------------------------------------------------------------
@@ -201,141 +199,92 @@ I sort_and_unique(I f, I l) {
   return sort_and_unique(f, l, less{});
 }
 
-template <typename I, typename P>
-// requires BidirectionalIterator<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_linear(I f, I l, P p) {
-  if (f == l || p(*std::prev(l)))
-    return l;
+template <typename I>
+using DifferenceType = typename std::iterator_traits<I>::difference_type;
 
-  while (p(*f))
-    ++f;
+template <typename I>
+class partition_points_t {
+ public:
+  // partially formed state!
+  partition_points_t() = default;
 
-  return f;
-}
+  partition_points_t(I f, I l)
+      : f_(f), sent_(f), l_(l), sent_to_l_(std::distance(f, l)) {}
 
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_linear(I f, I l, const V& v, P p) {
-  auto less_than_v = [&](Reference<I> x) { return p(x, v); };
-  return partition_point_linear(f, l, less_than_v);
-}
+  template <typename P>
+  I operator()(P p);
 
-template <typename I, typename V>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_linear(I f, I l, const V& v) {
-  return lower_bound_linear(f, l, v, lib::less{});
-}
+ private:
+  template <typename P>
+  I no_checks(P p);
 
-template <typename I, typename P>
-__attribute__((noinline))
-I partition_point_binary_search_part(I f, I l,
-                                    DifferenceType<I> n,
-                                    P p) {
-  I middle = std::next(f, n / 2);
-  if (p(*middle))
-    return std::partition_point(++middle, l, p);
+  I f_;
+  I sent_;
+  I l_;
 
-  int step = 1;
+  DifferenceType<I> sent_to_l_;
+};
 
+template <typename I>
+template <typename P>
+inline
+I partition_points_t<I>::no_checks(P p) {
   while (true) {
-    I test = std::next(f, step);
-    if (!p(*test)) {
-      l = test;
-      break;
+    // clang-format off
+    if (!p(*f_)) return f_; ++f_;
+    if (!p(*f_)) return f_; ++f_;
+    if (!p(*f_)) return f_; ++f_;
+    if (!p(*f_)) return f_; ++f_;
+    // clang-format on
+
+    auto step = 1;
+    while (true) {
+      I test = std::next(f_, step);
+      if (!p(*test))
+        break;
+      f_ = ++test;
+      step <<= 1;
     }
-    f = ++test;
-    step <<= 1;
   }
-
-  return std::partition_point(f, std::min(l, middle), p);
 }
 
-template <typename I, typename P>
-// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_biased(I f, I l, P p) {
-  if (f == l || !p(*f)) return f; f++;
-  if (f == l || !p(*f)) return f; f++;
-  if (f == l || !p(*f)) return f; f++;
-  if (f == l || !p(*f)) return f; f++;
-  if (f == l || !p(*f)) return f; f++;
+template <typename I>
+template <typename P>
+I partition_points_t<I>::operator()(P p) {
+  if (!p(*f_)) return f_; ++f_;
+  while (true) {
+    if (!p(*sent_))
+      return no_checks(p);
 
-  DifferenceType<I> n = std::distance(f, l);
-  if (n > 5)
-    return partition_point_binary_search_part(f, l, n, p);
-  return partition_point_biased(f, l, p);
+    f_ = ++sent_;
+    --sent_to_l_;
+
+    auto half = sent_to_l_ / 2;
+    sent_to_l_ -= half;
+    sent_ = std::next(f_, half);
+    if (!sent_to_l_) return f_;
+  }
 }
 
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_biased(I f, I l, const V& v, P p) {
-  auto less_than_v = [&](const Reference<I> x) { return p(x, v); };
-  return v1::partition_point_biased(f, l, less_than_v);
-  //return partition_point_biased(f, l, less_than_v);
-}
+template <typename I>
+using Reference = typename std::iterator_traits<I>::reference;
 
-template <typename I, typename V>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_biased(I f, I l, const V& v) {
-  return lower_bound_biased(f, l, v, less{});
-}
+template <typename I, typename P = less>
+class lower_bounds_t : P {
+ public:
+  lower_bounds_t(I f, I l, P p = P{}) : P{p}, pp_{f, l} {}
 
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I upper_bound_biased(I f, I l, const V& v, P p) {
-  auto greater_than_v = [&](const Reference<I> x) { return !p(v, x); };
-  return partition_point_biased(f, l, greater_than_v);
-}
-
-template <typename I, typename V>
-// requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
-I upper_bound_biased(I f, I l, const V& v) {
-  return upper_bound_biased(f, l, v, less{});
-}
-
-template <typename I, typename P>
-// requires BidirectionalIterator<I> && UnaryPredicate<P, ValueType<I>>
-I partition_point_hinted(I f, I hint, I l, P p) {
-  I rhs = partition_point_biased(hint, l, p);
-  if (rhs != hint)
-    return rhs;
-
-  return partition_point_biased(std::reverse_iterator<I>(hint),
-                                std::reverse_iterator<I>(f), not_fn(p)).base();
-}
-
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I lower_bound_hinted(I f, I hint, I l, const V& v, P p) {
-  auto less_than_v = [&](const Reference<I> x) { return p(x, v); };
-  return partition_point_hinted(f, hint, l, less_than_v);
-}
-
-template <typename I, typename V>
-// requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
-I lower_bound_hinted(I f, I hint, I l, const V& v) {
-  return lower_bound_hinted(f, hint, l, v, less{});
-}
-
-template <typename I, typename V, typename P>
-// requires ForwardIterator<I> && StrictWeakOrdering<P, ValueType<I>>
-I upper_bound_hinted(I f, I hint, I l, const V& v, P p) {
-  auto greater_than_v = [&](const Reference<I> x) { return !p(v, x); };
-  return partition_point_hinted(f, hint, l, greater_than_v);
-}
-
-template <typename I, typename V>
-// requires ForwardIterator<I> && TotallyOrdered<ValueType<I>>
-I upper_bound_hinted(I f, I hint, I l, const V& v) {
-  return upper_bound_hinted(f, hint, l, v, less{});
-}
+  template <typename V>
+  I operator()(const V& v) {
+    P p(*this);
+    auto less_than_v = [&](Reference<I> x) { return p(x, v); };
+    return pp_(less_than_v);
+  }
+ private:
+  partition_points_t<I> pp_;
+};
 
 namespace detail {
-
-template <typename I, typename V, typename O, typename P>
-std::pair<I, O> copy_unitl_lower_bound(I f, I l, const V& v, O o, P p) {
-  I m = lower_bound_biased(f, l, v, p);
-  return {m, detail::copy(f, m, o)};
-}
 
 template <typename I1, typename I2, typename O, typename P>
 // requires ForwardIterator<I1> && ForwardIterator<I2> && OutputIterator<O> &&
@@ -346,16 +295,19 @@ std::tuple<I1, I2, O> set_union_intersecting_parts(I1 f1,
                                                    I2 l2,
                                                    O o,
                                                    P p) {
-  while (true) {
-    if (f2 == l2)
-      break;
-
-    std::tie(f1, o) = copy_unitl_lower_bound(f1, l1, *f2, o, p);
+  lower_bounds_t<I1, P> searcher_1(f1, l1, p);
+  lower_bounds_t<I2, P> searcher_2(f2, l2, p);
+  while (f1 != l1 && f2 != l2) {
+    I1 m1 = searcher_1(*f2);
+    o = lib::detail::copy(f1, m1, o);
+    f1 = m1;
 
     if (f1 == l1)
       break;
 
-    std::tie(f2, o) = copy_unitl_lower_bound(f2, l2, *f1, o, p);
+    I2 m2 = searcher_2(*f1);
+    o = lib::detail::copy(f2, m2, o);
+    f2 = m2;
 
     if (f2 == l2)
       break;
@@ -366,6 +318,7 @@ std::tuple<I1, I2, O> set_union_intersecting_parts(I1 f1,
 
   return {f1, f2, o};
 }
+
 
 template <typename I1, typename I2, typename P>
 // requires ForwardIterator<I1> && ForwardIterator<I2> &&
@@ -578,10 +531,7 @@ class flat_set {
   template <typename V,
             typename = detail::insert_should_be_enabled<value_type, V>>
   iterator insert(const_iterator hint, V&& v) {
-    auto pos = lower_bound_hinted(cbegin(), hint, cend(), v, value_comp());
-    if (pos == end() || value_comp()(v, *pos))
-      return body().insert(pos, std::forward<V>(v));
-    return const_cast_iterator(pos);
+    return insert(v).first;
   }
 
   template <typename I>
