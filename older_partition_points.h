@@ -63,22 +63,6 @@ I partition_points_t<I>::no_checks(I f, I l, P p) {
   }
 }
 
-template<typename I, typename P>
-I partition_point(I f, I l, P p) {
-  auto len = std::distance(f, l);
-  while (len) {
-    auto len2 = len / 2;
-    I middle = std::next(f, len2);
-    if (p(*middle)) {
-      f = ++middle;
-      len -= len2 + 1;
-    } else {
-      len = len2;
-    }
-  }
-  return f;
-}
-
 template <typename I>
 template <typename P>
 I partition_points_t<I>::operator()(I f, I l, P p) {
@@ -87,19 +71,13 @@ I partition_points_t<I>::operator()(I f, I l, P p) {
     if (!p(*sent_))
       return no_checks(f, l, p);
 
-    sent_to_l_ = std::distance(f, l);
-    while (sent_to_l_) {
-      auto len2 = sent_to_l_ / 2;
-      sent_ = std::next(f, len2);
-      if (p(*sent_)) {
-        f = ++sent_;
-        sent_to_l_ -= len2 + 1;
-      } else {
-        sent_to_l_ = len2;
-        return operator()(f, l, p);
-      }
-    }
-    return f;
+    f = ++sent_;
+    --sent_to_l_;
+    if (!sent_to_l_) return f;
+
+    auto half = sent_to_l_ / 2;
+    sent_to_l_ -= half;
+    sent_ = std::next(f, half);
   }
 }
 
