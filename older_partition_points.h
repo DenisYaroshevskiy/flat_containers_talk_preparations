@@ -16,45 +16,91 @@ O copy(I f, I l, O o);
 namespace check_presentation {
 
 template <typename I>
+using DifferenceType = typename std::iterator_traits<I>::difference_type;
+
+template <typename I>
 class partition_points_t {
  public:
-  partition_points_t(I sent) : sent_(sent) {}
+  // partially formed state!
+  partition_points_t() = default;
+
+  partition_points_t(I f_, I l_) {
+    sent_ = f_;
+    sent_to_l_ = std::distance(f_, l_);
+  }
 
   template <typename P>
   I operator()(I f, I l, P p);
 
  private:
+  template <typename P>
+  I no_checks(I f, I l, P p);
+
   I sent_;
+  DifferenceType<I> sent_to_l_;
 };
 
 template <typename I>
 template <typename P>
-I partition_points_t<I>::operator()(I f, I l, P p) {
-  assert(f != l);
-  while (p(*sent_)) {
-    f = std::max(++sent_, f);
-    if (f == l) return l;
-    sent_ = std::next(f, std::distance(f, l) / 2);
-  }
-
-  // clang-format off
-    if (!p(*f)) return f; ++f;
-    if (!p(*f)) return f; ++f;
-    if (!p(*f)) return f; ++f;
-    if (!p(*f)) return f; ++f;
-  // clang-format on
-
-  auto step = 1;
+inline
+I partition_points_t<I>::no_checks(I f, I l, P p) {
   while (true) {
-    I m = std::next(f, step);
-    if (!p(*m)) {
-      l = m;
-      break;
+    // clang-format off
+    if (!p(*f)) return f; ++f;
+    if (!p(*f)) return f; ++f;
+    if (!p(*f)) return f; ++f;
+    if (!p(*f)) return f; ++f;
+    // clang-format on
+
+    auto step = 1;
+    while (true) {
+      I test = std::next(f, step);
+      if (!p(*test))
+        break;
+      f = ++test;
+      step <<= 1;
     }
-    f = ++m;
-    step <<= 1;
   }
-  return std::partition_point(f, l, p);
+}
+
+template<typename I, typename P>
+I partition_point(I f, I l, P p) {
+  auto len = std::distance(f, l);
+  while (len) {
+    auto len2 = len / 2;
+    I middle = std::next(f, len2);
+    if (p(*middle)) {
+      f = ++middle;
+      len -= len2 + 1;
+    } else {
+      len = len2;
+    }
+  }
+  return f;
+}
+
+template <typename I>
+template <typename P>
+I partition_points_t<I>::operator()(I f, I l, P p) {
+  if (!p(*f)) return f; ++f;
+  while (true) {
+    if (!p(*sent_))
+      return no_checks(f, l, p);
+
+    sent_to_l_ = std::distance(f, l);
+    while (sent_to_l_) {
+      auto len2 = sent_to_l_ / 2;
+      sent_ = std::next(f, len2);
+      if (p(*sent_)) {
+        f = ++sent_;
+        sent_to_l_ -= len2 + 1;
+      } else {
+        sent_to_l_ = len2;
+        return operator()(f, l, p);
+      }
+    }
+    return f;
+  }
 }
 
 template <typename I>
@@ -63,7 +109,7 @@ using Reference = typename std::iterator_traits<I>::reference;
 template <typename I, typename P>
 class lower_bounds_t : partition_points_t<I>, P {
  public:
-  lower_bounds_t(I sent, P p) : partition_points_t<I>{sent}, P(p) {}
+  lower_bounds_t(I f, I l, P p) : partition_points_t<I>{f, l}, P(p) {}
 
   template <typename V>
   I operator()(I f, I l, const V& v) {
@@ -92,8 +138,8 @@ std::tuple<I1, I2, O> set_union_intersecting_parts(I1 f1,
                                                    I2 l2,
                                                    O o,
                                                    P p) {
-  lower_bounds_t<I1, P> searcher_1(f1, p);
-  lower_bounds_t<I2, P> searcher_2(f2, p);
+  lower_bounds_t<I1, P> searcher_1(f1, l1, p);
+  lower_bounds_t<I2, P> searcher_2(f2, l2, p);
   while (f1 != l1 && f2 != l2) {
     std::tie(f1, o) = copy_unitl_lower_bound(f1, l1, searcher_1, *f2, o);
 
