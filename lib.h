@@ -209,14 +209,19 @@ class partition_points_t {
   partition_points_t() = default;
 
   partition_points_t(I f, I l)
-      : f_(f), sent_(f), l_(l), sent_to_l_(std::distance(f, l)) {}
+      : f_(f), sent_(f), l_(l), sent_to_l_(std::distance(f, l)) {
+    update_sentinel();
+  }
 
   template <typename P>
   I operator()(P p);
 
  private:
+  void update_sentinel();
+
   template <typename P>
   I no_checks(P p);
+
 
   I f_;
   I sent_;
@@ -224,6 +229,13 @@ class partition_points_t {
 
   DifferenceType<I> sent_to_l_;
 };
+
+template <typename I>
+void partition_points_t<I>::update_sentinel() {
+  auto half = sent_to_l_ / 2;
+  sent_to_l_ -= half;
+  sent_ = std::next(f_, half);
+}
 
 template <typename I>
 template <typename P>
@@ -235,9 +247,13 @@ I partition_points_t<I>::no_checks(P p) {
     if (!p(*f_)) return f_; ++f_;
     if (!p(*f_)) return f_; ++f_;
     if (!p(*f_)) return f_; ++f_;
+
+    // step = 1
+    if (!p(*f_)) return f_; ++f_;
+    if (!p(*f_)) return f_; ++f_;
     // clang-format on
 
-    auto step = 1;
+    auto step = 2;
     while (true) {
       I test = std::next(f_, step);
       if (!p(*test))
@@ -252,18 +268,15 @@ template <typename I>
 template <typename P>
 I partition_points_t<I>::operator()(P p) {
   if (!p(*f_)) return f_; ++f_;
-  while (true) {
-    if (!p(*sent_))
-      return no_checks(p);
-
+  while (p(*sent_)) {
     f_ = ++sent_;
     --sent_to_l_;
 
-    auto half = sent_to_l_ / 2;
-    sent_to_l_ -= half;
-    sent_ = std::next(f_, half);
+    update_sentinel();
     if (!sent_to_l_) return f_;
   }
+
+  return no_checks(p);
 }
 
 template <typename I>
