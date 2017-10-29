@@ -19,7 +19,7 @@ class Variation:
 
 
 def parseMeasurement(json_dict):
-  parsed_name = re.match(r'(.*?)(_solution)?/(.*)',json_dict['name'])
+  parsed_name = re.match(r'(.*?)(_solution)?/(.*)/(.*)',json_dict['name'])
   name = parsed_name.group(1)
 
   input_size = int(parsed_name.group(3))
@@ -66,11 +66,11 @@ def drawPlot(variations):
   data = plotly.graph_objs.Data(traces)
   layout = {}
 
-  layout['xaxis'] = dict(title='distance(first, last)',
+  layout['xaxis'] = dict(title='lhs_size',
                          autotick=False,
                          ticks='outside',
                          tick0=0,
-                         dtick=1,
+                         dtick=40,
                          ticklen=8,
                          tickwidth=4,
                          tickcolor='#000')
@@ -78,7 +78,7 @@ def drawPlot(variations):
                          autotick=False,
                          ticks='outside',
                          tick0=0,
-                         dtick=200,
+                         dtick=1000,
                          ticklen=8,
                          tickwidth=4,
                          tickcolor='#000')

@@ -1,0 +1,1082 @@
+{
+  "context": {
+    "date": "2017-10-29 21:31:04",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2200,
+    "cpu_scaling_enabled": false,
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "baseline/0/2000",
+      "iterations": 4492190,
+      "real_time": 154,
+      "cpu_time": 154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/40/1960",
+      "iterations": 4548231,
+      "real_time": 156,
+      "cpu_time": 156,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/80/1920",
+      "iterations": 4473387,
+      "real_time": 156,
+      "cpu_time": 156,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/120/1880",
+      "iterations": 4381298,
+      "real_time": 152,
+      "cpu_time": 152,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/160/1840",
+      "iterations": 4645175,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/200/1800",
+      "iterations": 4464229,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/240/1760",
+      "iterations": 4251055,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/280/1720",
+      "iterations": 4496894,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/320/1680",
+      "iterations": 4613306,
+      "real_time": 152,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/360/1640",
+      "iterations": 4448710,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/400/1600",
+      "iterations": 4506796,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/440/1560",
+      "iterations": 4595377,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/480/1520",
+      "iterations": 4653451,
+      "real_time": 154,
+      "cpu_time": 154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/520/1480",
+      "iterations": 4579054,
+      "real_time": 154,
+      "cpu_time": 154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/560/1440",
+      "iterations": 4597913,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/600/1400",
+      "iterations": 4595528,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/640/1360",
+      "iterations": 4447014,
+      "real_time": 152,
+      "cpu_time": 152,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/680/1320",
+      "iterations": 4527433,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/720/1280",
+      "iterations": 4572802,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/760/1240",
+      "iterations": 4483013,
+      "real_time": 150,
+      "cpu_time": 150,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/800/1200",
+      "iterations": 4556253,
+      "real_time": 150,
+      "cpu_time": 150,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/840/1160",
+      "iterations": 4455108,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/880/1120",
+      "iterations": 4431586,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/920/1080",
+      "iterations": 4505026,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/960/1040",
+      "iterations": 4535853,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1000/1000",
+      "iterations": 4424499,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1040/960",
+      "iterations": 4443260,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1080/920",
+      "iterations": 4447494,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1120/880",
+      "iterations": 4506041,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1160/840",
+      "iterations": 4495854,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1200/800",
+      "iterations": 4420755,
+      "real_time": 152,
+      "cpu_time": 152,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1240/760",
+      "iterations": 4525706,
+      "real_time": 150,
+      "cpu_time": 150,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1280/720",
+      "iterations": 4561984,
+      "real_time": 152,
+      "cpu_time": 152,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1320/680",
+      "iterations": 4323390,
+      "real_time": 154,
+      "cpu_time": 154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1360/640",
+      "iterations": 4606597,
+      "real_time": 152,
+      "cpu_time": 152,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1400/600",
+      "iterations": 4530129,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1440/560",
+      "iterations": 4615009,
+      "real_time": 158,
+      "cpu_time": 158,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1480/520",
+      "iterations": 4514265,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1520/480",
+      "iterations": 4497443,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1560/440",
+      "iterations": 4412645,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1600/400",
+      "iterations": 4594804,
+      "real_time": 154,
+      "cpu_time": 154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1640/360",
+      "iterations": 4504012,
+      "real_time": 154,
+      "cpu_time": 154,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1680/320",
+      "iterations": 4591971,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1720/280",
+      "iterations": 4491988,
+      "real_time": 150,
+      "cpu_time": 150,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1760/240",
+      "iterations": 4609478,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1800/200",
+      "iterations": 4609296,
+      "real_time": 156,
+      "cpu_time": 156,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1840/160",
+      "iterations": 4654070,
+      "real_time": 153,
+      "cpu_time": 153,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1880/120",
+      "iterations": 4593085,
+      "real_time": 152,
+      "cpu_time": 152,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1920/80",
+      "iterations": 4488359,
+      "real_time": 149,
+      "cpu_time": 149,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/1960/40",
+      "iterations": 4513392,
+      "real_time": 151,
+      "cpu_time": 151,
+      "time_unit": "ns"
+    },
+    {
+      "name": "baseline/2000/0",
+      "iterations": 4569250,
+      "real_time": 155,
+      "cpu_time": 155,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/0/2000",
+      "iterations": 2908052,
+      "real_time": 233,
+      "cpu_time": 233,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/40/1960",
+      "iterations": 446537,
+      "real_time": 1598,
+      "cpu_time": 1598,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/80/1920",
+      "iterations": 425273,
+      "real_time": 1651,
+      "cpu_time": 1651,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/120/1880",
+      "iterations": 424327,
+      "real_time": 1672,
+      "cpu_time": 1672,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/160/1840",
+      "iterations": 429227,
+      "real_time": 1619,
+      "cpu_time": 1619,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/200/1800",
+      "iterations": 425005,
+      "real_time": 1620,
+      "cpu_time": 1620,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/240/1760",
+      "iterations": 405903,
+      "real_time": 1735,
+      "cpu_time": 1735,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/280/1720",
+      "iterations": 389146,
+      "real_time": 1695,
+      "cpu_time": 1695,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/320/1680",
+      "iterations": 406351,
+      "real_time": 1771,
+      "cpu_time": 1771,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/360/1640",
+      "iterations": 360303,
+      "real_time": 1851,
+      "cpu_time": 1851,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/400/1600",
+      "iterations": 356673,
+      "real_time": 1932,
+      "cpu_time": 1932,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/440/1560",
+      "iterations": 359020,
+      "real_time": 1994,
+      "cpu_time": 1994,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/480/1520",
+      "iterations": 329983,
+      "real_time": 2016,
+      "cpu_time": 2016,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/520/1480",
+      "iterations": 314798,
+      "real_time": 2139,
+      "cpu_time": 2139,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/560/1440",
+      "iterations": 312961,
+      "real_time": 2263,
+      "cpu_time": 2263,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/600/1400",
+      "iterations": 294419,
+      "real_time": 2311,
+      "cpu_time": 2311,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/640/1360",
+      "iterations": 292411,
+      "real_time": 2487,
+      "cpu_time": 2487,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/680/1320",
+      "iterations": 282028,
+      "real_time": 2477,
+      "cpu_time": 2477,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/720/1280",
+      "iterations": 260033,
+      "real_time": 2650,
+      "cpu_time": 2650,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/760/1240",
+      "iterations": 257079,
+      "real_time": 2679,
+      "cpu_time": 2679,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/800/1200",
+      "iterations": 248497,
+      "real_time": 2837,
+      "cpu_time": 2836,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/840/1160",
+      "iterations": 240783,
+      "real_time": 2881,
+      "cpu_time": 2881,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/880/1120",
+      "iterations": 229061,
+      "real_time": 3015,
+      "cpu_time": 3015,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/920/1080",
+      "iterations": 220771,
+      "real_time": 3085,
+      "cpu_time": 3084,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/960/1040",
+      "iterations": 214899,
+      "real_time": 3078,
+      "cpu_time": 3077,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1000/1000",
+      "iterations": 211521,
+      "real_time": 3311,
+      "cpu_time": 3311,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1040/960",
+      "iterations": 205773,
+      "real_time": 3340,
+      "cpu_time": 3340,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1080/920",
+      "iterations": 201627,
+      "real_time": 3441,
+      "cpu_time": 3441,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1120/880",
+      "iterations": 195543,
+      "real_time": 3611,
+      "cpu_time": 3611,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1160/840",
+      "iterations": 187946,
+      "real_time": 3723,
+      "cpu_time": 3722,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1200/800",
+      "iterations": 183595,
+      "real_time": 3759,
+      "cpu_time": 3759,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1240/760",
+      "iterations": 182510,
+      "real_time": 3893,
+      "cpu_time": 3892,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1280/720",
+      "iterations": 176835,
+      "real_time": 4013,
+      "cpu_time": 4013,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1320/680",
+      "iterations": 176703,
+      "real_time": 4049,
+      "cpu_time": 4048,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1360/640",
+      "iterations": 172812,
+      "real_time": 4247,
+      "cpu_time": 4246,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1400/600",
+      "iterations": 162606,
+      "real_time": 4299,
+      "cpu_time": 4299,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1440/560",
+      "iterations": 159293,
+      "real_time": 4349,
+      "cpu_time": 4348,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1480/520",
+      "iterations": 158828,
+      "real_time": 4397,
+      "cpu_time": 4397,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1520/480",
+      "iterations": 135564,
+      "real_time": 4493,
+      "cpu_time": 4493,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1560/440",
+      "iterations": 135833,
+      "real_time": 4651,
+      "cpu_time": 4650,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1600/400",
+      "iterations": 100000,
+      "real_time": 5004,
+      "cpu_time": 5003,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1640/360",
+      "iterations": 146178,
+      "real_time": 4769,
+      "cpu_time": 4769,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1680/320",
+      "iterations": 139779,
+      "real_time": 4890,
+      "cpu_time": 4890,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1720/280",
+      "iterations": 135706,
+      "real_time": 4938,
+      "cpu_time": 4938,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1760/240",
+      "iterations": 136697,
+      "real_time": 4993,
+      "cpu_time": 4993,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1800/200",
+      "iterations": 129187,
+      "real_time": 5342,
+      "cpu_time": 5342,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1840/160",
+      "iterations": 112471,
+      "real_time": 5447,
+      "cpu_time": 5445,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1880/120",
+      "iterations": 121883,
+      "real_time": 5437,
+      "cpu_time": 5436,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1920/80",
+      "iterations": 113003,
+      "real_time": 5587,
+      "cpu_time": 5585,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/1960/40",
+      "iterations": 116300,
+      "real_time": 5735,
+      "cpu_time": 5733,
+      "time_unit": "ns"
+    },
+    {
+      "name": "PreviousSetUnion/2000/0",
+      "iterations": 2869935,
+      "real_time": 234,
+      "cpu_time": 234,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/0/2000",
+      "iterations": 2936352,
+      "real_time": 237,
+      "cpu_time": 237,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/40/1960",
+      "iterations": 448138,
+      "real_time": 1550,
+      "cpu_time": 1550,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/80/1920",
+      "iterations": 403161,
+      "real_time": 1652,
+      "cpu_time": 1651,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/120/1880",
+      "iterations": 453424,
+      "real_time": 1560,
+      "cpu_time": 1560,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/160/1840",
+      "iterations": 440003,
+      "real_time": 1588,
+      "cpu_time": 1588,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/200/1800",
+      "iterations": 435719,
+      "real_time": 1585,
+      "cpu_time": 1585,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/240/1760",
+      "iterations": 419949,
+      "real_time": 1637,
+      "cpu_time": 1637,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/280/1720",
+      "iterations": 413497,
+      "real_time": 1716,
+      "cpu_time": 1716,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/320/1680",
+      "iterations": 409156,
+      "real_time": 1711,
+      "cpu_time": 1711,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/360/1640",
+      "iterations": 396843,
+      "real_time": 1746,
+      "cpu_time": 1746,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/400/1600",
+      "iterations": 374470,
+      "real_time": 1881,
+      "cpu_time": 1881,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/440/1560",
+      "iterations": 383591,
+      "real_time": 1892,
+      "cpu_time": 1892,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/480/1520",
+      "iterations": 356943,
+      "real_time": 1945,
+      "cpu_time": 1945,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/520/1480",
+      "iterations": 354896,
+      "real_time": 1978,
+      "cpu_time": 1977,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/560/1440",
+      "iterations": 317280,
+      "real_time": 2076,
+      "cpu_time": 2076,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/600/1400",
+      "iterations": 323807,
+      "real_time": 2180,
+      "cpu_time": 2180,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/640/1360",
+      "iterations": 316361,
+      "real_time": 2217,
+      "cpu_time": 2217,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/680/1320",
+      "iterations": 316832,
+      "real_time": 2285,
+      "cpu_time": 2285,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/720/1280",
+      "iterations": 303190,
+      "real_time": 2218,
+      "cpu_time": 2218,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/760/1240",
+      "iterations": 297913,
+      "real_time": 2282,
+      "cpu_time": 2281,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/800/1200",
+      "iterations": 280962,
+      "real_time": 2361,
+      "cpu_time": 2361,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/840/1160",
+      "iterations": 284420,
+      "real_time": 2502,
+      "cpu_time": 2502,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/880/1120",
+      "iterations": 271481,
+      "real_time": 2441,
+      "cpu_time": 2441,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/920/1080",
+      "iterations": 290175,
+      "real_time": 2491,
+      "cpu_time": 2491,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/960/1040",
+      "iterations": 283800,
+      "real_time": 2525,
+      "cpu_time": 2525,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1000/1000",
+      "iterations": 261472,
+      "real_time": 2573,
+      "cpu_time": 2573,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1040/960",
+      "iterations": 257034,
+      "real_time": 2539,
+      "cpu_time": 2539,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1080/920",
+      "iterations": 265836,
+      "real_time": 2558,
+      "cpu_time": 2558,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1120/880",
+      "iterations": 264376,
+      "real_time": 2538,
+      "cpu_time": 2538,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1160/840",
+      "iterations": 265763,
+      "real_time": 2761,
+      "cpu_time": 2760,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1200/800",
+      "iterations": 257038,
+      "real_time": 2707,
+      "cpu_time": 2706,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1240/760",
+      "iterations": 259174,
+      "real_time": 2746,
+      "cpu_time": 2746,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1280/720",
+      "iterations": 247170,
+      "real_time": 2818,
+      "cpu_time": 2818,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1320/680",
+      "iterations": 236920,
+      "real_time": 2842,
+      "cpu_time": 2842,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1360/640",
+      "iterations": 244090,
+      "real_time": 2954,
+      "cpu_time": 2954,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1400/600",
+      "iterations": 215775,
+      "real_time": 3125,
+      "cpu_time": 3124,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1440/560",
+      "iterations": 221635,
+      "real_time": 3014,
+      "cpu_time": 3014,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1480/520",
+      "iterations": 223126,
+      "real_time": 3085,
+      "cpu_time": 3085,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1520/480",
+      "iterations": 226884,
+      "real_time": 3149,
+      "cpu_time": 3149,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1560/440",
+      "iterations": 212923,
+      "real_time": 3249,
+      "cpu_time": 3249,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1600/400",
+      "iterations": 220246,
+      "real_time": 3187,
+      "cpu_time": 3186,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1640/360",
+      "iterations": 217565,
+      "real_time": 3106,
+      "cpu_time": 3106,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1680/320",
+      "iterations": 212261,
+      "real_time": 3245,
+      "cpu_time": 3245,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1720/280",
+      "iterations": 218164,
+      "real_time": 3505,
+      "cpu_time": 3505,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1760/240",
+      "iterations": 215184,
+      "real_time": 3156,
+      "cpu_time": 3156,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1800/200",
+      "iterations": 222260,
+      "real_time": 3138,
+      "cpu_time": 3138,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1840/160",
+      "iterations": 216406,
+      "real_time": 3194,
+      "cpu_time": 3194,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1880/120",
+      "iterations": 227063,
+      "real_time": 3072,
+      "cpu_time": 3072,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1920/80",
+      "iterations": 227331,
+      "real_time": 3059,
+      "cpu_time": 3059,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/1960/40",
+      "iterations": 253089,
+      "real_time": 2783,
+      "cpu_time": 2783,
+      "time_unit": "ns"
+    },
+    {
+      "name": "CurrentSetUnion/2000/0",
+      "iterations": 2974003,
+      "real_time": 240,
+      "cpu_time": 240,
+      "time_unit": "ns"
+    }
+  ]
+}

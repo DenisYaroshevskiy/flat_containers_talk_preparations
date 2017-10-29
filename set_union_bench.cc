@@ -11,7 +11,7 @@
 namespace {
 
 constexpr size_t kLhsSize = 1000;
-constexpr size_t kRhsSize = 1000;
+constexpr size_t kRhsSize = 10000;
 
 using int_vec = std::vector<int>;
 
