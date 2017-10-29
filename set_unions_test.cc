@@ -145,3 +145,15 @@ TEST_CASE("v3_set_union", "[set_unions") {
     return v3::set_union(f1, l1, f2, l2, o, std::less<>{});
   });
 }
+
+TEST_CASE("v4_set_union", "[set_unions") {
+  set_union_test([](auto f1, auto l1, auto f2, auto l2, auto o) {
+    return v4::set_union(f1, l1, f2, l2, o, std::less<>{});
+  });
+}
+
+TEST_CASE("v5_set_union", "[set_unions]") {
+  set_union_test([](auto f1, auto l1, auto f2, auto l2, auto o) {
+    return v5::set_union(f1, l1, f2, l2, o, std::less<>{});
+  });
+}
