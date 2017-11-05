@@ -6,6 +6,8 @@ import itertools
 
 from plotly.graph_objs import Scatter, Layout
 
+last_40 = False
+
 class Measurement:
   def __init__(self, input_size, time):
     self.input_size = input_size
@@ -66,11 +68,17 @@ def drawPlot(variations):
   data = plotly.graph_objs.Data(traces)
   layout = {}
 
+  dtick_x = 40
+  dtick_y = 1000
+  if last_40 == True:
+    dtick_x = 1
+    dtick_y = 200
+
   layout['xaxis'] = dict(title='lhs_size',
                          autotick=False,
                          ticks='outside',
                          tick0=0,
-                         dtick=40,
+                         dtick=dtick_x,
                          ticklen=8,
                          tickwidth=4,
                          tickcolor='#000')
@@ -78,7 +86,7 @@ def drawPlot(variations):
                          autotick=False,
                          ticks='outside',
                          tick0=0,
-                         dtick=1000,
+                         dtick=dtick_y,
                          ticklen=8,
                          tickwidth=4,
                          tickcolor='#000')
@@ -95,10 +103,12 @@ if __name__ == "__main__":
   options_parser.add_argument('--benchmarks_result',
                                dest='benchmarks_result',
                                required=True)
+  options_parser.add_argument('--last_40', action='store_true', dest='last_40')
   options_parser.add_argument('--baseline_name',
                                dest='baseline_name',
                                default='baseline')
   options = options_parser.parse_args()
+  last_40 = options.last_40
   baseline_name = options.baseline_name
   loaded_benchmarks = json.load(open(options.benchmarks_result))
 

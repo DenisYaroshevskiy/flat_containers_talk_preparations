@@ -13,6 +13,7 @@ namespace {
 constexpr size_t kProblemSize = 2000;
 constexpr size_t kMinSize = 0;
 constexpr size_t kStep = 40;
+constexpr bool kLastStep = false;
 
 using int_vec = std::vector<int>;
 
@@ -51,14 +52,14 @@ void set_union_bench(benchmark::State& state) {
 
   auto input = test_input_data(lhs_size, rhs_size);
 
-  while (state.KeepRunning()) {
+  for (auto _ : state) {
     int_vec res(lhs_size + rhs_size);
     Alg{}(input.first.begin(), input.first.end(), input.second.begin(),
           input.second.end(), res.begin());
   }
 }
 
-void set_input_sizes(benchmark::internal::Benchmark* bench) {
+void full_problem_size(benchmark::internal::Benchmark* bench) {
   size_t lhs_size = kMinSize;
   size_t rhs_size = kProblemSize - kMinSize;
 
@@ -67,6 +68,24 @@ void set_input_sizes(benchmark::internal::Benchmark* bench) {
     lhs_size += kStep;
     rhs_size -= kStep;
   } while (lhs_size <= kProblemSize);
+}
+
+void last_step(benchmark::internal::Benchmark* bench) {
+  size_t lhs_size = kProblemSize - kStep;
+  size_t rhs_size = kStep;
+  do {
+    bench->Args({static_cast<int>(lhs_size), static_cast<int>(rhs_size)});
+    lhs_size += 1;
+    rhs_size -= 1;
+  } while (lhs_size <= kProblemSize);
+}
+
+void set_input_sizes(benchmark::internal::Benchmark* bench) {
+  if (kLastStep) {
+    last_step(bench);
+  } else {
+    full_problem_size(bench);
+  }
 }
 
 struct baseline_alg {
@@ -80,6 +99,23 @@ void baseline(benchmark::State& state) {
   set_union_bench<baseline_alg>(state);
 }
 
+BENCHMARK(baseline)->Apply(set_input_sizes);
+
+struct linear_set_union {
+  template <typename I1, typename I2, typename O>
+  O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
+    return v6::set_union(f1, l1, f2, l2, o, std::less<>{});
+  }
+};
+
+void LinearSetUnion(benchmark::State& state) {
+  set_union_bench<linear_set_union>(state);
+}
+
+BENCHMARK(LinearSetUnion)->Apply(set_input_sizes);
+
+#if 0
+
 struct previous_set_union {
   template <typename I1, typename I2, typename O>
   O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
@@ -90,6 +126,10 @@ struct previous_set_union {
 void PreviousSetUnion(benchmark::State& state) {
   set_union_bench<previous_set_union>(state);
 }
+
+BENCHMARK(PreviousSetUnion)->Apply(set_input_sizes);
+
+#endif
 
 struct current_set_union {
   template <typename I1, typename I2, typename O>
@@ -102,8 +142,6 @@ void CurrentSetUnion(benchmark::State& state) {
   set_union_bench<current_set_union>(state);
 }
 
-BENCHMARK(baseline)->Apply(set_input_sizes);
-BENCHMARK(PreviousSetUnion)->Apply(set_input_sizes);
 BENCHMARK(CurrentSetUnion)->Apply(set_input_sizes);
 
 }  // namespace
