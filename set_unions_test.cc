@@ -31,9 +31,7 @@ struct move_only_int {
     return *this;
   }
 
-  move_only_int clone() const {
-    return move_only_int(body);
-  }
+  move_only_int clone() const { return move_only_int(body); }
 
   friend bool operator==(const move_only_int& x, const move_only_int& y) {
     return x.body == y.body;
@@ -120,7 +118,7 @@ using int_it = std::vector<int>::iterator;
 
 }  // namespace
 
-#if 0 // libc++ has a bug.
+#if 0  // libc++ has a bug.
 TEST_CASE("std_set_union", "[set_unions]") {
   set_union_test([](auto f1, auto l1, auto f2, auto l2, auto o) {
     return std::set_union(f1, l1, f2, l2, o);
@@ -167,11 +165,5 @@ TEST_CASE("v6_set_union", "[set_unions]") {
 TEST_CASE("v7_set_union", "[set_unions]") {
   set_union_test([](auto f1, auto l1, auto f2, auto l2, auto o) {
     return v7::set_union(f1, l1, f2, l2, o, std::less<>{});
-  });
-}
-
-TEST_CASE("v8_set_union", "[set_unions]") {
-  set_union_test([](auto f1, auto l1, auto f2, auto l2, auto o) {
-    return v8::set_union(f1, l1, f2, l2, o, std::less<>{});
   });
 }

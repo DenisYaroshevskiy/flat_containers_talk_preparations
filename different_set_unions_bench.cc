@@ -30,7 +30,7 @@ std::pair<int_vec, int_vec> test_input_data(size_t lhs_size, size_t rhs_size) {
     return dis(g);
   };
 
-  auto generate_vec = [&] (size_t size) {
+  auto generate_vec = [&](size_t size) {
     std::set<int> res;
     while (res.size() < size)
       res.insert(random_number());
@@ -80,22 +80,10 @@ void baseline(benchmark::State& state) {
   set_union_bench<baseline_alg>(state);
 }
 
-struct best_previous_set_union
-{
-  template <typename I1, typename I2, typename O>
-  O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
-    return v5::set_union(f1, l1, f2, l2, o, std::less<>{});
-  }
-};
-
-void BestPreviousSetUnion(benchmark::State& state) {
-  set_union_bench<best_previous_set_union>(state);
-}
-
 struct previous_set_union {
   template <typename I1, typename I2, typename O>
   O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
-    return v7::set_union(f1, l1, f2, l2, o, std::less<>{});
+    return v5::set_union(f1, l1, f2, l2, o, std::less<>{});
   }
 };
 
@@ -106,7 +94,7 @@ void PreviousSetUnion(benchmark::State& state) {
 struct current_set_union {
   template <typename I1, typename I2, typename O>
   O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
-    return v8::set_union(f1, l1, f2, l2, o, std::less<>{});
+    return v7::set_union(f1, l1, f2, l2, o, std::less<>{});
   }
 };
 
@@ -115,11 +103,9 @@ void CurrentSetUnion(benchmark::State& state) {
 }
 
 BENCHMARK(baseline)->Apply(set_input_sizes);
-BENCHMARK(BestPreviousSetUnion)->Apply(set_input_sizes);
 BENCHMARK(PreviousSetUnion)->Apply(set_input_sizes);
 BENCHMARK(CurrentSetUnion)->Apply(set_input_sizes);
 
 }  // namespace
 
 BENCHMARK_MAIN();
-

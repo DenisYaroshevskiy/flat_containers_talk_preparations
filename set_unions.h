@@ -1,4 +1,36 @@
 #include <algorithm>
+#include <functional>
+#include <type_traits>
+#include <iterator>
+
+// Workaround https://bugs.llvm.org/show_bug.cgi?id=35202
+template <typename P>
+struct is_total_ordering : std::false_type {};
+
+template <>
+struct is_total_ordering<std::less<>> : std::true_type {};
+
+template <typename T>
+struct greater_is_well_defined
+    : std::is_integral<typename std::decay<T>::type> {};
+
+template <typename T, typename U, typename P>
+using can_use_eqality = std::integral_constant<bool,
+  greater_is_well_defined<T>::value &&
+  greater_is_well_defined<U>::value &&
+  is_total_ordering<P>::value>;
+
+template <typename T, typename U, typename P>
+typename std::enable_if<!can_use_eqality<T, U, P>::value, bool>::type
+greater(const T& x, const U& y, P p) {
+  return p(y, x);
+}
+
+template <typename T, typename U, typename P>
+typename std::enable_if<can_use_eqality<T, U, P>::value, bool>::type
+greater(const T& x, const U& y, P p) {
+  return x > y;
+}
 
 namespace v1 {
 
@@ -130,28 +162,15 @@ O set_union(I1 f1, I1 l1, I2 f2, I2 l2, O o, Comp comp) {
   if (f1 == l1) goto copySecond;
   if (f2 == l2) goto copyFirst;
 
-startWithFirst:
-  while (__builtin_expect(comp(*f1, *f2), true)) {
-    *o++ = *f1++;
-    if (f1 == l1) goto copySecond;
+  while (true) {
+    if (__builtin_expect(comp(*f1, *f2), true)) {
+      *o++ = *f1++;
+      if (f1 == l1) goto copySecond;
+    } else {
+      if (greater(*f1, *f2, comp)) *o++ = *f2;
+      ++f2; if (f2 == l2) goto copyFirst;
+    }
   }
-
-  if (comp(*f2, *f1)) *o++ = *f2;
-  ++f2; if (f2 == l2) goto copyFirst;
-
-  while (__builtin_expect(comp(*f2, *f1), true)) {
-    *o++ = *f2++;
-    if (f2 == l2) goto copyFirst;
-  }
-
-  if (comp(*f1, *f2)) {
-    *o++ = *f1++;
-    if (f1 == l1) goto copySecond;
-    goto startWithFirst;
-  }
-
-  ++f2; if (f2 == l2) goto copyFirst;
-  goto startWithFirst;
 
 copySecond:
   return std::copy(f2, l2, o);
@@ -168,26 +187,20 @@ O set_union(I1 f1, I1 l1, I2 f2, I2 l2, O o, Comp comp) {
   if (f1 == l1) goto copySecond;
   if (f2 == l2) goto copyFirst;
 
-  while (__builtin_expect(comp(*f1, *f2), true)) {
-  assignFirst:
-    *o++ = *f1++;
-    if (f1 == l1) goto copySecond;
-  }
-
-  if (__builtin_expect(comp(*f2, *f1), true)) goto assignSecond;
-  ++f2;
-  goto checkSecond;
-
-  while (__builtin_expect(comp(*f2, *f1), true)) {
-  assignSecond:
-    *o++ = *f2++;
+  notBiased:
+    if (__builtin_expect(comp(*f1, *f2), true)) {
+      *o++ = *f1++; if (f1 == l1) goto copySecond;
+      goto biased1;
+    } else {
   checkSecond:
-    if (f2 == l2) goto copyFirst;
-  }
-
-  if (comp(*f1, *f2)) goto assignFirst;
-  ++f2;
-  goto checkSecond;
+      if (comp(*f2, *f1)) *o++ = *f2;
+      ++f2; if (f2 == l2) goto copyFirst;
+      goto notBiased;
+    }
+  biased1:
+    if (__builtin_expect(!comp(*f1, *f2), false)) goto checkSecond;
+    *o++ = *f1++; if (f1 == l1) goto copySecond;
+    goto biased1;
 
 copySecond:
   return std::copy(f2, l2, o);
@@ -197,32 +210,3 @@ copyFirst:
 
 }  // namespace v7
 
-namespace v8 {
-
-template <class I1, class I2, class O, class Comp>
-O set_union(I1 f1, I1 l1, I2 f2, I2 l2, O o, Comp comp) {
-  if (f1 == l1) goto copySecond;
-  if (f2 == l2) goto copyFirst;
-
-  while (__builtin_expect(comp(*f1, *f2), true)) {
-  assignFirst:
-    *o++ = *f1++;
-    if (f1 == l1) goto copySecond;
-  }
-
-  while (__builtin_expect(comp(*f2, *f1), true)) {
-    *o++ = *f2++;
-  checkSecond:
-    if (f2 == l2) goto copyFirst;
-  }
-
-  if (comp(*f1, *f2)) goto assignFirst;
-  ++f2; goto checkSecond;
-
-copySecond:
-  return std::copy(f2, l2, o);
-copyFirst:
-  return std::copy(f1, l1, o);
-}
-
-}  // namespace v8
