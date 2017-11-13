@@ -216,6 +216,11 @@ class partition_points_t {
   template <typename P>
   I operator()(P p);
 
+  I& f() { return f_; }
+  I& l() { return l_; }
+  I& f() const { return f_; }
+  I& l() const { return l_; }
+
  private:
   void update_sentinel();
 
@@ -283,21 +288,27 @@ template <typename I>
 using Reference = typename std::iterator_traits<I>::reference;
 
 template <typename I, typename P = less>
-class lower_bounds_t : P {
+class lower_bounds_t : public partition_points_t<I>, P {
  public:
-  lower_bounds_t(I f, I l, P p = P{}) : P{p}, pp_{f, l} {}
+  lower_bounds_t(I f, I l, P p = P{}) : partition_points_t<I>{f, l}, P{p} {}
+
+  using partition_points_t<I>::f;
 
   template <typename V>
   I operator()(const V& v) {
     P p(*this);
     auto less_than_v = [&](Reference<I> x) { return p(x, v); };
-    return pp_(less_than_v);
+    return partition_points_t<I>::operator()(less_than_v);
   }
- private:
-  partition_points_t<I> pp_;
 };
 
 namespace detail {
+
+template <typename I, typename P, typename V, typename O>
+O advance_set_union(lower_bounds_t<I, P>& searcher, const V& v, O o) {
+  auto f = searcher.f();
+  return lib::detail::copy(f, searcher(v), o);
+}
 
 template <typename I1, typename I2, typename O, typename P>
 // requires ForwardIterator<I1> && ForwardIterator<I2> && OutputIterator<O> &&
@@ -308,28 +319,24 @@ std::tuple<I1, I2, O> set_union_intersecting_parts(I1 f1,
                                                    I2 l2,
                                                    O o,
                                                    P p) {
-  lower_bounds_t<I1, P> searcher_1(f1, l1, p);
-  lower_bounds_t<I2, P> searcher_2(f2, l2, p);
-  while (f1 != l1 && f2 != l2) {
-    I1 m1 = searcher_1(*f2);
-    o = lib::detail::copy(f1, m1, o);
-    f1 = m1;
+  lower_bounds_t<I1, P> lhs(f1, l1, p);
+  lower_bounds_t<I2, P> rhs(f2, l2, p);
+  while (lhs.f() != lhs.l() && rhs.f() != rhs.l()) {
+    o = advance_set_union(lhs, *rhs.f(), o);
 
-    if (f1 == l1)
+    if (lhs.f() == lhs.l())
       break;
 
-    I2 m2 = searcher_2(*f1);
-    o = lib::detail::copy(f2, m2, o);
-    f2 = m2;
+    o = advance_set_union(rhs, *lhs.f(), o);
 
-    if (f2 == l2)
+    if (rhs.f() == rhs.l())
       break;
 
-    if (!p(*f1, *f2))
-      ++f2;
+    if (!p(*lhs.f(), *rhs.f()))
+      ++rhs.f();
   }
 
-  return {f1, f2, o};
+  return {lhs.f(), rhs.f(), o};
 }
 
 

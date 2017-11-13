@@ -3,10 +3,11 @@
 #include <map>
 
 #include "lib.h"
-//#include "linear_merge_boundary.h"
 #include "base/containers/flat_set.h"
 #include <boost/container/flat_set.hpp>
 #include <folly/sorted_vector_types.h>
+
+#include <iostream>
 
 #include "benchmark/benchmark.h"
 
@@ -14,9 +15,9 @@ namespace {
 
 constexpr size_t kLhsSize = 1000;
 
-constexpr size_t kStartRhs = 1;
-constexpr size_t kEndRhs = 31;
-constexpr size_t kRhsStep = 1;
+constexpr size_t kStartRhs = 5;
+constexpr size_t kEndRhs = 1001;
+constexpr size_t kRhsStep = 995;
 
 using int_vec = std::vector<int>;
 
@@ -69,6 +70,9 @@ struct baseline_set {
   template <typename I>
   void insert(I f, I l) {}
 
+  void reserve(size_t size) { body.reserve(size); }
+  size_t size() { return body.size(); }
+
   int_vec body;
 };
 
@@ -83,22 +87,20 @@ void baseline(benchmark::State& state) {
 }
 BENCHMARK(baseline)->Apply(set_input_sizes);
 
-void UseMemmove(benchmark::State& state) {
+void Sentinal(benchmark::State& state) {
   insert_first_last_bench<lib::flat_set<int>>(state);
 }
-BENCHMARK(UseMemmove)->Apply(set_input_sizes);
+BENCHMARK(Sentinal)->Apply(set_input_sizes);
 
 void Boost(benchmark::State& state) {
   insert_first_last_bench<boost::container::flat_set<int>>(state);
 }
 BENCHMARK(Boost)->Apply(set_input_sizes);
 
-#if 0
 void Folly(benchmark::State& state) {
   insert_first_last_bench<folly::sorted_vector_set<int>>(state);
 }
 BENCHMARK(Folly)->Apply(set_input_sizes);
-#endif
 
 }  // namespace
 

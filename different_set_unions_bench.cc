@@ -13,7 +13,7 @@ namespace {
 constexpr size_t kProblemSize = 2000;
 constexpr size_t kMinSize = 0;
 constexpr size_t kStep = 40;
-constexpr bool kLastStep = false;
+constexpr bool kLastStep = true;
 
 using int_vec = std::vector<int>;
 
@@ -81,6 +81,8 @@ void last_step(benchmark::internal::Benchmark* bench) {
 }
 
 void set_input_sizes(benchmark::internal::Benchmark* bench) {
+  bench->Args({560, 1440});
+  return;
   if (kLastStep) {
     last_step(bench);
   } else {
@@ -113,23 +115,6 @@ void LinearSetUnion(benchmark::State& state) {
 }
 
 BENCHMARK(LinearSetUnion)->Apply(set_input_sizes);
-
-#if 0
-
-struct previous_set_union {
-  template <typename I1, typename I2, typename O>
-  O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
-    return v5::set_union(f1, l1, f2, l2, o, std::less<>{});
-  }
-};
-
-void PreviousSetUnion(benchmark::State& state) {
-  set_union_bench<previous_set_union>(state);
-}
-
-BENCHMARK(PreviousSetUnion)->Apply(set_input_sizes);
-
-#endif
 
 struct current_set_union {
   template <typename I1, typename I2, typename O>
