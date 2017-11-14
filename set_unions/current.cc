@@ -4,7 +4,7 @@
 struct current_set_union {
   template <typename I1, typename I2, typename O>
   O operator()(I1 f1, I1 l1, I2 f2, I2 l2, O o) {
-    return v8::set_union(f1, l1, f2, l2, o, std::less<>{});
+    return v10::set_union(f1, l1, f2, l2, o, std::less<>{});
   }
 };
 

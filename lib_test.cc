@@ -50,8 +50,6 @@ using int_vec = int_set::underlying_type;
 using strange_cmp_set = lib::flat_set<int, strange_cmp>;
 using reverse_set = lib::flat_set<int, std::greater<int>>;
 
-
-
 template <bool is_lower_bound, typename F>
 void binary_search_test(F f) {
   std::vector<int> v(1000u);
