@@ -10,7 +10,7 @@ namespace {
 constexpr size_t kProblemSize = 2000;
 constexpr size_t kMinSize = 0;
 constexpr size_t kStep = 40;
-constexpr bool kLastStep = true;
+constexpr bool kLastStep = false;
 
 void full_problem_size(benchmark::internal::Benchmark* bench) {
   size_t lhs_size = kMinSize;

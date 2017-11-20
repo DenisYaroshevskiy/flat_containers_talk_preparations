@@ -13,4 +13,3 @@ void LinearSetUnion(benchmark::State& state) {
 }
 
 BENCHMARK(LinearSetUnion)->Apply(set_input_sizes);
-

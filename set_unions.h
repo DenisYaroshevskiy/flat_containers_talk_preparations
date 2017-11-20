@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cassert>
 #include <functional>
 #include <type_traits>
 #include <iterator>
@@ -363,4 +364,63 @@ copyFirst:
 }
 
 }  // namespace v10
+
+namespace v11 {
+
+template <typename I, typename P>
+// requires ForwardIterator<I> && UnaryPredicate<P, ValueType<I>>
+I partition_point_estimation(I f, I l, P p) {
+  I sent = std::next(f, static_cast<size_t>(std::distance(f, l)) / 2);
+  if (p(*sent)) return sent;
+
+  if (!p(*f)) return f;
+  ++f;
+  if (!p(*f)) return f;
+  ++f;
+  if (!p(*f)) return f;
+  ++f;
+  for (int step = 2;; step <<= 1) {
+    auto test = std::next(f, step);
+    if (!p(*test)) break;
+    f = ++test;
+  }
+  return f;
+}
+
+template <class I1, class I2, class O, class Comp>
+O set_union(I1 f1, I1 l1, I2 f2, I2 l2, O o, Comp comp) {
+  if (f1 == l1) goto copySecond;
+  if (f2 == l2) goto copyFirst;
+
+  while (true) {
+    if (__builtin_expect(!comp(*f1, *f2), false)) goto checkSecond;
+    *o++ = *f1++; if (f1 == l1) goto copySecond;
+    goto biased;
+
+  checkSecond:
+    if (not_equal_or_inverse(*f1, *f2, comp)) *o++ = *f2;
+    ++f2; if (f2 == l2) goto copyFirst;
+
+  biased:
+    if (!comp(*f1, *f2)) goto checkSecond;
+    *o++ = *f1++; if (f1 == l1) goto copySecond;
+    if (!comp(*f1, *f2)) goto checkSecond;
+    *o++ = *f1++; if (f1 == l1) goto copySecond;
+    if (!comp(*f1, *f2)) goto checkSecond;
+    *o++ = *f1++; if (f1 == l1) goto copySecond;
+
+    auto segment_end = partition_point_estimation(
+        f1, l1, [&](const auto& x) { return comp(x, *f2); });
+
+    o = std::copy(f1, segment_end, o);
+    f1 = segment_end; if (f1 == l1) goto copySecond;
+  }
+
+copySecond:
+  return std::copy(f2, l2, o);
+copyFirst:
+  return std::copy(f1, l1, o);
+}
+
+}  // namespace v11
 
